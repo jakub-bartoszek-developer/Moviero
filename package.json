@@ -2,7 +2,7 @@
  "name": "moviero",
  "version": "0.1.0",
  "private": true,
- "homepage": "https://jakub-bartoszek.github.io/Moviero/",
+ "homepage": "https://jakub-bartoszek.github.io/moviero/",
  "dependencies": {
   "@reduxjs/toolkit": "^1.9.7",
   "@testing-library/jest-dom": "^5.17.0",
