@@ -89,6 +89,6 @@ App live here: [jakub-bartoszek.github.io/moviero](https://jakub-bartoszek.githu
 
 For issues, questions, or suggestions, please open an issue in the repository or contact:
 
-Email: jakub.bartoszek.dev@gmail.com
-
-GitHub: [jakub-bartoszek](https://github.com/jakub-bartoszek)
+- Email: jakub.bartoszek.dev@gmail.com
+- Linkedin: [jbartoszek-dev](https://www.linkedin.com/in/jbartoszek-dev)
+- GitHub: [jakub-bartoszek](https://github.com/jakub-bartoszek)
