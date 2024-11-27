@@ -6,7 +6,7 @@ App live here: [jakub-bartoszek.github.io/moviero](https://jakub-bartoszek.githu
 
 ## Table of Contents
 
-- [Installation](#instalation)
+- [Instalation](#instalation)
 - [Features](#features)
 - [Technologies used](#technologies-used)
 - [Gallery](#gallery)
