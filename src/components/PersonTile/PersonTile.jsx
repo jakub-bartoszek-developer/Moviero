@@ -9,6 +9,8 @@ import {
  StyledLink,
  Wrapper
 } from "./styled";
+import avatar from "../../assets/images/no-avatar.png";
+
 
 
 export const PersonTile = ({ person }) => {
@@ -16,9 +18,7 @@ export const PersonTile = ({ person }) => {
   <Wrapper>
    <StyledLink to={toPerson({ id: person.id })}>
     <ImageWrapper>
-     {person.profile_path && (
-      <Image src={`https://image.tmdb.org/t/p/w400/${person.profile_path}`} />
-     )}
+     <Image src={person.profile_path ? `https://image.tmdb.org/t/p/w400/${person.profile_path}` : avatar} />
     </ImageWrapper>
     <Content>
      <Name> {person.name}</Name>
