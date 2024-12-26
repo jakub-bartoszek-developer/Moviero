@@ -28,7 +28,7 @@ export const SearchTile = ({ data, switchSearchbar }) => {
     >
      <PosterWrapper>
       {data.poster_path && (
-       <Poster src={`https://image.tmdb.org/t/p/w400/${data.poster_path}`} />
+       <Poster loading="lazy" alt={data.title} src={`https://image.tmdb.org/t/p/w400/${data.poster_path}`} />
       )}
      </PosterWrapper>
      <Content>
@@ -50,7 +50,7 @@ export const SearchTile = ({ data, switchSearchbar }) => {
     >
      <PosterWrapper>
       {data.profile_path && (
-       <Poster src={`https://image.tmdb.org/t/p/w400/${data.profile_path}`} />
+       <Poster loading="lazy" alt={data.title} src={`https://image.tmdb.org/t/p/w400/${data.profile_path}`} />
       )}
      </PosterWrapper>
      <Content>

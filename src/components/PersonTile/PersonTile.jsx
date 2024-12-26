@@ -18,7 +18,7 @@ export const PersonTile = ({ person }) => {
   <Wrapper>
    <StyledLink to={toPerson({ id: person.id })}>
     <ImageWrapper>
-     <Image src={person.profile_path ? `https://image.tmdb.org/t/p/w400/${person.profile_path}` : avatar} />
+     <Image src={person.profile_path ? `https://image.tmdb.org/t/p/w400/${person.profile_path}` : avatar} loading="lazy" alt={person.name} />
     </ImageWrapper>
     <Content>
      <Name> {person.name}</Name>
