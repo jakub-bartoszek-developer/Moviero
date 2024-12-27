@@ -191,7 +191,8 @@ export const PosterWrapper = styled.li`
 
 export const Poster = styled.div`
  height: 100%;
- border-radius: inherit;
+ overflow: hidden;
+ border-radius: 5px;
 `;
 
 export const SimilarMoviesList = styled.ul`
