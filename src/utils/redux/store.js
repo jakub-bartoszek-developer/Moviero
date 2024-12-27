@@ -15,9 +15,10 @@ const store = configureStore({
   search: searchReducer,
   movie: movieReducer,
   people: peopleReducer,
-  person: personReducer
+  person: personReducer,
  },
- middleware: [sagaMiddleWare]
+ middleware: (getDefaultMiddleware) =>
+  getDefaultMiddleware().concat(sagaMiddleWare),
 });
 
 sagaMiddleWare.run(rootSaga);

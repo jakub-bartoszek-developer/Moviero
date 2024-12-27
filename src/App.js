@@ -8,29 +8,17 @@ import { Navigation } from "./components/Navigation/Navigation";
 
 function App() {
  return (
-  <HashRouter>
+  <HashRouter future={{
+   v7_startTransition: true,
+   v7_relativeSplatPath: true
+  }}>
    <Navigation />
    <Routes>
-    <Route
-     path={toMovies()}
-     element={<Movies />}
-    />
-    <Route
-     path={toPeople()}
-     element={<People />}
-    />
-    <Route
-     path={toMovie()}
-     element={<Movie />}
-    />
-    <Route
-     path={toPerson()}
-     element={<Person />}
-    />
-    <Route
-     path="/"
-     element={<Navigate to="/movies" />}
-    />
+    <Route path={toMovies()} element={<Movies />} />
+    <Route path={toPeople()} element={<People />} />
+    <Route path={toMovie()} element={<Movie />} />
+    <Route path={toPerson()} element={<Person />} />
+    <Route path="/" element={<Navigate to="/movies" />} />
    </Routes>
   </HashRouter>
  );
