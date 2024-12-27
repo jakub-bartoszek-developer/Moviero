@@ -13,6 +13,7 @@ export const StyledLink = styled(Link)`
  transition: all 0.3s;
  cursor: pointer;
  text-decoration: none;
+ border-radius: 5px;
 
  &:hover {
   background-color: ${({ theme }) => theme.colors.tile.hoverBackground};
@@ -24,9 +25,11 @@ export const PosterWrapper = styled.div`
  aspect-ratio: 6/9;
  display: flex;
  background-color: black;
+ border-radius: 5px;
+ overflow: hidden;
 `;
 
-export const Poster = styled.img`
+export const Poster = styled.div`
  width: 100%;
  height: 100%;
 `;

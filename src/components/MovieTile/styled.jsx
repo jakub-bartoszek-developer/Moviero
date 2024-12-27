@@ -2,7 +2,19 @@ import styled from "styled-components";
 import { ReactComponent as Star } from "../../assets/icons/star.svg";
 import { Link } from "react-router-dom";
 
-export const Wrapper = styled.li``;
+export const Poster = styled.div`
+ width: 100%;
+ height: 100%;
+ transition: 300ms;
+`;
+
+export const Wrapper = styled.li`
+ &:hover {
+  ${Poster} {
+   scale: 103%;
+  }
+ }
+`;
 
 export const StyledLink = styled(Link)`
  display: grid;
@@ -11,6 +23,7 @@ export const StyledLink = styled(Link)`
  padding: 0;
  background-color: ${({ theme }) => theme.colors.tile.background};
  border-radius: 5px;
+ overflow: hidden;
  transition: all 0.3s;
  cursor: pointer;
  height: 100%;
@@ -37,13 +50,7 @@ export const PosterWrapper = styled.div`
  justify-content: center;
  align-items: center;
  background-color: black;
- border-radius: 5px 5px 0 0;
-`;
-
-export const Poster = styled.img`
- width: 100%;
- height: 100%;
- border-radius: 5px 5px 0 0;
+ overflow: hidden;
 `;
 
 export const Content = styled.div`
