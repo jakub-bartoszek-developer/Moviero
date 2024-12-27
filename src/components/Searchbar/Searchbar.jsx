@@ -20,7 +20,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { nanoid } from "nanoid";
 import { SearchTile } from "../SearchTile/SearchTile";
 import { Loader } from "../Loader/Loader";
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const Searchbar = () => {
  const searchQuery = useSelector(selectSearchQuery);
@@ -40,6 +40,7 @@ export const Searchbar = () => {
   return () => {
    document.removeEventListener("mousedown", handleOutsideClick);
   };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
  }, []);
 
  useEffect(() => {
@@ -52,7 +53,7 @@ export const Searchbar = () => {
     })
    );
   }
- }, [dispatch, searchQuery]);
+ }, [dispatch, category, searchQuery]);
 
  const handleOutsideClick = (e) => {
   if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
