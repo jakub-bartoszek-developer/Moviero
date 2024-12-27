@@ -30,14 +30,15 @@ export const ImageWrapper = styled.div`
  border-radius: 5px 5px 0 0;
 `;
 
-export const Image = styled.img`
+export const Image = styled.div`
  width: 100%;
+ height: 100%;
  border-radius: 5px 5px 0 0;
 `;
 
 export const Content = styled.div`
  display: flex;
- justify-content: space-between;
+ justify-content: center;
  flex-direction: column;
  align-items: center;
  height: 100%;

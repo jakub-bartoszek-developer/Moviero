@@ -15,6 +15,8 @@ import {
  Wrapper,
  Year
 } from "./styled";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 export const SearchTile = ({ data, switchSearchbar }) => {
  const category = useSelector(selectCategory);
@@ -28,7 +30,15 @@ export const SearchTile = ({ data, switchSearchbar }) => {
     >
      <PosterWrapper>
       {data.poster_path && (
-       <Poster loading="lazy" alt={data.title} src={`https://image.tmdb.org/t/p/w400/${data.poster_path}`} />
+       <Poster>
+        <LazyLoadImage
+         alt={data.title}
+         src={`https://image.tmdb.org/t/p/w400/${data.poster_path}`}
+         effect="blur"
+         width="100%"
+         height="100%"
+        />
+       </Poster>
       )}
      </PosterWrapper>
      <Content>
@@ -50,7 +60,11 @@ export const SearchTile = ({ data, switchSearchbar }) => {
     >
      <PosterWrapper>
       {data.profile_path && (
-       <Poster loading="lazy" alt={data.title} src={`https://image.tmdb.org/t/p/w400/${data.profile_path}`} />
+       <Poster
+        loading="lazy"
+        alt={data.title}
+        src={`https://image.tmdb.org/t/p/w400/${data.profile_path}`}
+       />
       )}
      </PosterWrapper>
      <Content>
