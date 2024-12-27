@@ -21,6 +21,8 @@ function* fetchPopularMoviesHandler({ payload }) {
   yield put(setPopularMovies(popularMovies.results));
   yield put(setTotalPages(popularMovies.total_pages));
   yield put(setGenres(genres.genres));
+  yield put(setStatus("success"));
+
  } catch (error) {
   yield put(setStatus("error"));
  }
