@@ -7,5 +7,11 @@ import { searchSaga } from "./searchSaga";
 import { personSaga } from "./personSaga";
 
 export default function* rootSaga() {
-  yield all([moviesSaga(), movieSaga(), peopleSaga(), personSaga(), searchSaga()]);
+ yield all([
+  moviesSaga(),
+  movieSaga(),
+  peopleSaga(),
+  personSaga(),
+  searchSaga()
+ ]);
 }

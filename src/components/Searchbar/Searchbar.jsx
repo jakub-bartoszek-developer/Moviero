@@ -68,7 +68,9 @@ export const Searchbar = () => {
  };
 
  const onFormSubmit = (e) => {
-  navigate(`/${category === "movie" ? "movies" : "people"}?search=${searchQuery}&page=1`);
+  navigate(
+   `/${category === "movie" ? "movies" : "people"}?search=${searchQuery}&page=1`
+  );
   switchSearchbar();
  };
 

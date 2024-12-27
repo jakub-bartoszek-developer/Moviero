@@ -13,11 +13,13 @@ const Movies = () => {
  useEffect(() => {
   searchParams.set("page", 1);
   setSearchParams(searchParams);
+  // eslint-disable-next-line
  }, []);
 
  useEffect(() => {
   window.scrollTo(0, 0);
   dispatch(setCategory("movie"));
+  // eslint-disable-next-line
  }, []);
 
  return (

@@ -23,16 +23,13 @@ export const StyledButton = styled.button`
  &:hover {
   scale: 105%;
   background-color: ${({ theme }) => theme.colors.tile.hoverBackground};
-;
  }
 
  &:disabled {
   cursor: auto;
   color: ${({ theme }) => theme.colors.site.mutedText};
-;
   scale: 100%;
   background-color: ${({ theme }) => theme.colors.tile.background};
-;
  }
 
  @media (max-width: ${({ theme }) => theme.breakpoints.m}) {
