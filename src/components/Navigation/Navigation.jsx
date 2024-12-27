@@ -6,7 +6,6 @@ import {
  Links,
  MenuButton,
  MenuHeader,
- MenuLogo,
  Sidebar,
  SidebarBackground,
  SidebarNavLink,
