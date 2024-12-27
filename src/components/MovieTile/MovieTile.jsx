@@ -31,8 +31,8 @@ export const MovieTile = ({ movie, genres }) => {
         <LazyLoadImage
          alt={movie.title}
          src={
-          movie.profile_path
-           ? `https://image.tmdb.org/t/p/w400/${movie.profile_path}`
+          movie.poster_path
+           ? `https://image.tmdb.org/t/p/w400/${movie.poster_path}`
            : poster
          }
          effect="blur"

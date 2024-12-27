@@ -33,6 +33,7 @@ export const SearchedMovies = () => {
  useEffect(() => {
   searchParams.set("page", 1);
   setSearchParams(searchParams);
+  // eslint-disable-next-line
  }, []);
 
  useEffect(() => {
