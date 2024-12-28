@@ -13,8 +13,9 @@ import {
  Votes,
  OutOf
 } from "./styled";
+import React from "react";
 
-export const Banner = ({ currentMovie, movieGenres }) => {
+export const Banner = React.memo(({ currentMovie, movieGenres }) => {
  return (
   <BannerWrapper
    key={currentMovie.id}
@@ -38,4 +39,4 @@ export const Banner = ({ currentMovie, movieGenres }) => {
    </MovieDetails>
   </BannerWrapper>
  );
-};
+});
