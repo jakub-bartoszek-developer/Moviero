@@ -50,9 +50,10 @@ export const Header = ({ currentMovie, setCurrentMovie, genres }) => {
      movieGenres={movieGenres}
     />
    )}
-   {similarMovies.length > 0 && (
-    <HorizontalSection>
-     <SectionHeader>Similar movies</SectionHeader>
+
+   <HorizontalSection>
+    <SectionHeader>Similar movies</SectionHeader>
+    {similarMovies.length > 0 && (
      <SimilarMoviesList>
       {similarMovies.map((movie) => (
        <PosterWrapper
@@ -73,8 +74,8 @@ export const Header = ({ currentMovie, setCurrentMovie, genres }) => {
        </PosterWrapper>
       ))}
      </SimilarMoviesList>
-    </HorizontalSection>
-   )}
+    )}
+   </HorizontalSection>
   </>
  );
 };
