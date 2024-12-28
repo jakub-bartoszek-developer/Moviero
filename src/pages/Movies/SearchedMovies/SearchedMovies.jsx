@@ -19,7 +19,7 @@ import { VerticalSection } from "../../../components/VerticalSection/styled";
 import { SectionHeader } from "../../../components/SectionHeader/styled";
 import { MovieTile } from "../../../components/MovieTile/MovieTile";
 
-export const SearchedMovies = () => {
+const SearchedMovies = () => {
  const dispatch = useDispatch();
  const status = useSelector(selectSearchStatus);
  const searchResults = useSelector(selectSearchResults);
@@ -92,3 +92,5 @@ export const SearchedMovies = () => {
    return <>Error</>;
  }
 };
+
+export default SearchedMovies;

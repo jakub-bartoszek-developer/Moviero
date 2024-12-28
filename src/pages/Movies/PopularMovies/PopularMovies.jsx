@@ -18,7 +18,7 @@ import { SectionHeader } from "../../../components/SectionHeader/styled";
 import { MovieTile } from "../../../components/MovieTile/MovieTile";
 import { Header } from "../../../components/Header/Header";
 
-export const PopularMovies = () => {
+const PopularMovies = () => {
  const dispatch = useDispatch();
  const status = useSelector(selectStatus);
  const popularMovies = useSelector(selectPopularMovies);
@@ -97,3 +97,5 @@ export const PopularMovies = () => {
 
  return renderContent();
 };
+
+export default PopularMovies;
