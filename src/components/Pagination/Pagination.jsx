@@ -1,71 +1,51 @@
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { Container, PageCount, StyledButton } from "./styled";
 
-export const Pagination = ({
- searchParams,
- setSearchParams,
- containerRef,
- totalPages
-}) => {
- const page = parseInt(searchParams.get("page"));
+export const Pagination = ({ totalPages }) => {
+ const [searchParams, setSearchParams] = useSearchParams();
+ const [currentPage, setCurrentPage] = useState(
+  () => parseInt(searchParams.get("page")) || 1
+ );
 
- const handlePageClickScroll = () => {
-  if (containerRef.current) {
-   containerRef.current.scrollIntoView({
-    alignToTop: true
-   });
+ useEffect(() => {
+  const page = parseInt(searchParams.get("page"));
+  if (page && page !== currentPage) {
+   setCurrentPage(page);
   }
- };
+ }, [searchParams, currentPage]);
 
- const onFirstPageHandler = () => {
-  page !== 1 && searchParams.set("page", 1);
-  setSearchParams(searchParams);
-  handlePageClickScroll();
- };
-
- const onPreviousPageHandler = () => {
-  page !== 1 && searchParams.set("page", page - 1);
-  setSearchParams(searchParams);
-  handlePageClickScroll();
- };
-
- const onNextPageHandler = () => {
-  page !== totalPages && searchParams.set("page", page + 1);
-  setSearchParams(searchParams);
-  handlePageClickScroll();
- };
-
- const onLastPageHandler = () => {
-  page !== totalPages && searchParams.set("page", totalPages);
-  setSearchParams(searchParams);
-  handlePageClickScroll();
+ const handlePageChange = (newPage) => {
+  setCurrentPage(newPage);
+  setSearchParams({ page: newPage });
  };
 
  return (
   <Container>
    <StyledButton
-    onClick={onFirstPageHandler}
-    disabled={page === 1}
+    onClick={() => handlePageChange(1)}
+    disabled={currentPage === 1}
    >
     &lt;&lt;
    </StyledButton>
    <StyledButton
-    onClick={onPreviousPageHandler}
-    disabled={page === 1}
+    onClick={() => handlePageChange(currentPage - 1)}
+    disabled={currentPage === 1}
    >
     &lt;
    </StyledButton>
    <PageCount>
-    Page {page} of {totalPages}
+    Page {currentPage} of {totalPages}
    </PageCount>
    <StyledButton
-    onClick={onNextPageHandler}
-    disabled={page === totalPages}
+    onClick={() => handlePageChange(currentPage + 1)}
+    disabled={currentPage === totalPages}
    >
     &gt;
    </StyledButton>
    <StyledButton
-    onClick={onLastPageHandler}
-    disabled={page === totalPages}
+    onClick={() => handlePageChange(totalPages)}
+    disabled={currentPage === totalPages}
    >
     &gt;&gt;
    </StyledButton>
