@@ -6,6 +6,7 @@ import {
  Links,
  MenuButton,
  MenuHeader,
+ MenuLogo,
  Sidebar,
  SidebarBackground,
  SidebarNavLink,
@@ -46,7 +47,7 @@ export const Navigation = () => {
     <Sidebar>
      <MenuHeader>
       <MenuButton onClick={handleButtonClick} />
-      <Logo />
+      <MenuLogo to="/movies?page=1">Moviero</MenuLogo>
      </MenuHeader>
      <SidebarNavLink to="/movies?page=1">Movies</SidebarNavLink>
      <SidebarNavLink to="/people?page=1">People</SidebarNavLink>

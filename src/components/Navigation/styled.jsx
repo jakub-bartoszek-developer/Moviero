@@ -1,5 +1,5 @@
-import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 import { ReactComponent as Menu } from "../../assets/icons/menu.svg";
 
 export const Wrapper = styled.nav`
@@ -65,7 +65,7 @@ export const StyledNavLink = styled(NavLink)`
 export const MenuHeader = styled.div`
  display: flex;
  align-items: center;
- gap: 8px;
+ gap: 16px;
 `;
 
 export const MenuButton = styled(Menu)`
@@ -80,17 +80,17 @@ export const MenuButton = styled(Menu)`
  }
 `;
 
-export const MenuLogo = styled.div`
- display: flex;
- padding: 0;
- margin: 0;
- justify-content: start;
- align-items: center;
- font-size: 24px;
+export const MenuLogo = styled(NavLink)`
+ font-size: 32px;
  font-weight: 700;
  color: ${({ theme }) => theme.colors.site.primaryText};
  text-shadow: 0 0 15px ${({ theme }) => theme.colors.site.primaryText};
  text-decoration: none;
+ margin-right: 8px;
+
+ @media (max-width: ${({ theme }) => theme.breakpoints.s}) {
+  font-size: 24px;
+ }
 `;
 
 export const SidebarNavLink = styled(NavLink)`
@@ -116,7 +116,7 @@ export const SidebarWrapper = styled.div`
 `;
 
 export const Sidebar = styled.div`
- width: 70%;
+ width: min;
  display: flex;
  flex-direction: column;
  padding: 20px 16px;
