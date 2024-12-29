@@ -12,28 +12,29 @@ import {
  Biography,
  Birthdate,
  Birthplace,
- Cast,
  Container,
  Image,
  ImageWrapper,
  Name,
- PersonDetails,
- SectionHeader,
- SectionWrapper
+ PersonDetails
 } from "./styled";
-import { nanoid } from "nanoid";
 import { Loader } from "../../components/Loader/Loader";
-import { MovieTile } from "../../components/MovieTile/MovieTile";
+import avatar from "../../assets/images/no-avatar.png";
+import { setCategory } from "../../utils/redux/searchSlice";
+import { PersonMoviesSection } from "../../components/PersonMoviesSection/PersonMoviesSection";
 
 const Person = () => {
+  const dispatch = useDispatch();
  const { id } = useParams();
- const dispatch = useDispatch();
- const person = useSelector(selectPerson);
- const personCredits = useSelector(selectPersonCredits);
+ const { profile_path, name, birthday, place_of_birth, biography } =
+  useSelector(selectPerson);
+ const { cast, crew } = useSelector(selectPersonCredits);
  const status = useSelector(selectStatus);
 
  useEffect(() => {
   window.scrollTo(0, 0);
+  dispatch(setCategory("person"));
+  // eslint-disable-next-line
  }, []);
 
  useEffect(() => {
@@ -48,45 +49,25 @@ const Person = () => {
       <ImageWrapper>
        <Image
         loading="lazy"
-        alt={person.name}
-        src={`https://image.tmdb.org/t/p/original/${person.profile_path}`}
+        alt={name}
+        src={
+         profile_path
+          ? `https://image.tmdb.org/t/p/original/${profile_path}`
+          : avatar
+        }
        />
       </ImageWrapper>
       <PersonDetails>
-       {person.name && <Name>{person.name}</Name>}
-       {person.birthday && <Birthdate>{person.birthday}</Birthdate>}
-       {person.place_of_birth && (
-        <Birthplace>{person.place_of_birth}</Birthplace>
-       )}
+       {name && <Name>{name}</Name>}
+       {birthday && <Birthdate>{birthday}</Birthdate>}
+       {place_of_birth && <Birthplace>{place_of_birth}</Birthplace>}
       </PersonDetails>
-      <Biography>{person.biography}</Biography>
+      {biography && <Biography>{biography}</Biography>}
      </Banner>
-     {personCredits.cast?.length && (
-      <SectionWrapper>
-       <SectionHeader>Cast</SectionHeader>
-       <Cast>
-        {personCredits.cast.map((movie) => (
-         <MovieTile
-          key={nanoid()}
-          movie={movie}
-         />
-        ))}
-       </Cast>
-      </SectionWrapper>
-     )}
-     {personCredits.crew?.length && (
-      <SectionWrapper>
-       <SectionHeader>Crew</SectionHeader>
-       <Cast>
-        {personCredits.crew.map((movie) => (
-         <MovieTile
-          key={nanoid()}
-          movie={movie}
-         />
-        ))}
-       </Cast>
-      </SectionWrapper>
-     )}
+     <PersonMoviesSection
+      cast={cast}
+      crew={crew}
+     />
     </Container>
    );
   case "loading":
