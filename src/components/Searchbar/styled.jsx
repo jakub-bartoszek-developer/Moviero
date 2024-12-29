@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ReactComponent as Search } from "../../assets/icons/search.svg";
+import { ReactComponent as SearchIconSvg } from "../../assets/icons/search.svg";
 
 export const Container = styled.div`
  width: 100%;
@@ -10,7 +10,7 @@ export const Container = styled.div`
  position: relative;
 `;
 
-export const Wrapper = styled.form`
+export const SearchbarWrapper = styled.form`
  width: ${({ $isExpanded }) => ($isExpanded ? "100%" : "36px")};
  height: 36px;
  transition: all 0.3s;
@@ -21,7 +21,7 @@ export const Wrapper = styled.form`
  border-radius: 50px;
 `;
 
-export const SearchIconWrapper = styled.div`
+export const SearchButton = styled.div`
  height: 36px;
  width: 36px;
  display: flex;
@@ -31,11 +31,11 @@ export const SearchIconWrapper = styled.div`
  cursor: pointer;
 `;
 
-export const SearchIcon = styled(Search)`
+export const SearchIcon = styled(SearchIconSvg)`
  height: 50%;
 `;
 
-export const Input = styled.input`
+export const SearchInput = styled.input`
  background-color: transparent;
  color: inherit;
  border: none;
@@ -67,7 +67,7 @@ export const ResultList = styled.ul`
  z-index: 3;
  transition: all 0.3s;
 
- ${Wrapper}:focus-within & {
+ ${SearchbarWrapper}:focus-within & {
   transform: scale(1, 1);
  }
 

@@ -1,12 +1,12 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import {
  Container,
- Input,
  ResultList,
  ResultStatus,
+ SearchbarWrapper,
+ SearchButton,
  SearchIcon,
- SearchIconWrapper,
- Wrapper
+ SearchInput
 } from "./styled";
 import {
  fetchSearchbarResults,
@@ -22,26 +22,65 @@ import { SearchTile } from "../SearchTile/SearchTile";
 import { Loader } from "../Loader/Loader";
 import { useNavigate } from "react-router-dom";
 
+const SearchResults = React.memo(({ results, status, switchSearchbar }) => {
+ if (status === "error") {
+  return <ResultStatus>Error</ResultStatus>;
+ }
+
+ if (status === "loading") {
+  return (
+   <ResultStatus>
+    <Loader />
+   </ResultStatus>
+  );
+ }
+
+ if (status === "success") {
+  return results.length ? (
+   results.map((item) => (
+    <SearchTile
+     switchSearchbar={switchSearchbar}
+     key={nanoid()}
+     item={item}
+    />
+   ))
+  ) : (
+   <ResultStatus>No results...</ResultStatus>
+  );
+ }
+
+ return null;
+});
+
 export const Searchbar = () => {
  const searchQuery = useSelector(selectSearchQuery);
  const searchbarResults = useSelector(selectSearchbarResults);
  const status = useSelector(selectSearchbarStatus);
+ const category = useSelector(selectCategory);
+
  const [isExpanded, setIsExpanded] = useState(false);
  const inputRef = useRef(null);
  const wrapperRef = useRef(null);
- const category = useSelector(selectCategory);
 
  const navigate = useNavigate();
  const dispatch = useDispatch();
 
+ const handleOutsideClick = useCallback(
+  (e) => {
+   if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
+    setIsExpanded(false);
+    dispatch(setSearchQuery(""));
+   }
+  },
+  [dispatch]
+ );
+
  useEffect(() => {
   document.addEventListener("mousedown", handleOutsideClick);
-
   return () => {
    document.removeEventListener("mousedown", handleOutsideClick);
   };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
- }, []);
+ }, [handleOutsideClick]);
 
  useEffect(() => {
   if (searchQuery !== "") {
@@ -55,36 +94,35 @@ export const Searchbar = () => {
   }
  }, [dispatch, category, searchQuery]);
 
- const handleOutsideClick = (e) => {
-  if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
-   setIsExpanded(false);
-   dispatch(setSearchQuery(""));
-  }
- };
+ const switchSearchbar = useCallback(() => {
+  setIsExpanded((prev) => !prev);
+  inputRef.current?.focus();
+ }, []);
 
- const switchSearchbar = () => {
-  setIsExpanded(!isExpanded);
-  inputRef.current.focus();
- };
-
- const onFormSubmit = (e) => {
-  navigate(
-   `/${category === "movie" ? "movies" : "people"}?search=${searchQuery}&page=1`
-  );
-  switchSearchbar();
- };
+ const onFormSubmit = useCallback(
+  (e) => {
+   e.preventDefault();
+   navigate(
+    `/${
+     category === "movie" ? "movies" : "people"
+    }?search=${searchQuery}&page=1`
+   );
+   switchSearchbar();
+  },
+  [navigate, category, searchQuery, switchSearchbar]
+ );
 
  return (
   <Container>
-   <Wrapper
-    onSubmit={(e) => onFormSubmit(e)}
+   <SearchbarWrapper
+    onSubmit={onFormSubmit}
     ref={wrapperRef}
     $isExpanded={isExpanded}
    >
-    <SearchIconWrapper onClick={switchSearchbar}>
+    <SearchButton onClick={switchSearchbar}>
      <SearchIcon />
-    </SearchIconWrapper>
-    <Input
+    </SearchButton>
+    <SearchInput
      value={searchQuery}
      onChange={(e) => dispatch(setSearchQuery(e.target.value))}
      ref={inputRef}
@@ -92,30 +130,14 @@ export const Searchbar = () => {
     />
     {isExpanded && searchQuery && (
      <ResultList>
-      {status === "error" && <ResultStatus>Error</ResultStatus>}
-      {status === "loading" && (
-       <ResultStatus>
-        <Loader />
-       </ResultStatus>
-      )}
-      {status === "success" && (
-       <>
-        {searchbarResults.length ? (
-         searchbarResults.map((item) => (
-          <SearchTile
-           switchSearchbar={switchSearchbar}
-           key={nanoid()}
-           item={item}
-          />
-         ))
-        ) : (
-         <ResultStatus>No results...</ResultStatus>
-        )}
-       </>
-      )}
+      <SearchResults
+       results={searchbarResults}
+       status={status}
+       switchSearchbar={switchSearchbar}
+      />
      </ResultList>
     )}
-   </Wrapper>
+   </SearchbarWrapper>
   </Container>
  );
 };
