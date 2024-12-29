@@ -14,16 +14,18 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
 export const PersonTile = ({ person }) => {
+ const { id, name, profile_path, job, character } = person;
+
  return (
   <Wrapper>
-   <StyledLink to={toPerson({ id: person.id })}>
+   <StyledLink to={toPerson({ id: id })}>
     <ImageWrapper>
      <Image>
       <LazyLoadImage
-       alt={person.name}
+       alt={name}
        src={
-        person.profile_path
-         ? `https://image.tmdb.org/t/p/w400/${person.profile_path}`
+        profile_path
+         ? `https://image.tmdb.org/t/p/w400/${profile_path}`
          : avatar
        }
        effect="blur"
@@ -33,9 +35,9 @@ export const PersonTile = ({ person }) => {
      </Image>
     </ImageWrapper>
     <Content>
-     <Name> {person.name}</Name>
-     {person.job && <Job>{person.job}</Job>}
-     {person.character && <Role>{person.character}</Role>}
+     <Name>{name}</Name>
+     {job && <Job>{job}</Job>}
+     {character && <Role>{character}</Role>}
     </Content>
    </StyledLink>
   </Wrapper>
