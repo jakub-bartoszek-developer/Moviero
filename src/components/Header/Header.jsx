@@ -4,12 +4,8 @@ import {
  fetchSimilarMovies,
  selectSimilarMovies
 } from "../../utils/redux/moviesSlice";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css";
-import { Poster, PosterWrapper, SimilarMoviesList } from "./styled";
-import { SectionHeader } from "../../components/SectionHeader/styled";
-import { HorizontalSection } from "../../components/HorizontalSection/styled";
 import { Banner } from "../Banner/Banner";
+import { HorizontalSection } from "../HorizontalSection/HorizontalSection";
 
 export const Header = ({ currentMovie, setCurrentMovie, genres }) => {
  const dispatch = useDispatch();
@@ -50,32 +46,11 @@ export const Header = ({ currentMovie, setCurrentMovie, genres }) => {
      movieGenres={movieGenres}
     />
    )}
-
-   <HorizontalSection>
-    <SectionHeader>Similar movies</SectionHeader>
-    {similarMovies.length > 0 && (
-     <SimilarMoviesList>
-      {similarMovies.map((movie) => (
-       <PosterWrapper
-        $current={movie.id === currentMovie.id}
-        key={movie.id}
-        onClick={(e) => {
-         handleMovieChange(e, movie);
-        }}
-       >
-        <Poster>
-         <LazyLoadImage
-          alt={movie.title}
-          src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
-          effect="blur"
-          height="100%"
-         />
-        </Poster>
-       </PosterWrapper>
-      ))}
-     </SimilarMoviesList>
-    )}
-   </HorizontalSection>
+   <HorizontalSection
+    movies={similarMovies}
+    currentMovie={currentMovie}
+    handleMovieChange={handleMovieChange}
+   />
   </>
  );
 };
