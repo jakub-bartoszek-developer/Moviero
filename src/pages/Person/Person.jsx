@@ -24,8 +24,8 @@ import { setCategory } from "../../utils/redux/searchSlice";
 import { PersonMoviesSection } from "../../components/PersonMoviesSection/PersonMoviesSection";
 
 const Person = () => {
+  const dispatch = useDispatch();
  const { id } = useParams();
- const dispatch = useDispatch();
  const { profile_path, name, birthday, place_of_birth, biography } =
   useSelector(selectPerson);
  const { cast, crew } = useSelector(selectPersonCredits);
