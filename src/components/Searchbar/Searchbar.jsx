@@ -101,11 +101,11 @@ export const Searchbar = () => {
       {status === "success" && (
        <>
         {searchbarResults.length ? (
-         searchbarResults.map((data) => (
+         searchbarResults.map((item) => (
           <SearchTile
            switchSearchbar={switchSearchbar}
            key={nanoid()}
-           data={data}
+           item={item}
           />
          ))
         ) : (
