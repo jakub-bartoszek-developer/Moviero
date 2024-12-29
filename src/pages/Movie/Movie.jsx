@@ -30,6 +30,7 @@ import {
 import { nanoid } from "nanoid";
 import { Container } from "../../components/Container/styled";
 import { PersonTile } from "../../components/PersonTile/PersonTile";
+import { setCategory } from "../../utils/redux/searchSlice";
 
 const Movie = () => {
  const { id } = useParams();
@@ -41,6 +42,8 @@ const Movie = () => {
 
  useEffect(() => {
   window.scrollTo(0, 0);
+  dispatch(setCategory("movie"));
+  // eslint-disable-next-line
  }, []);
 
  useEffect(() => {
