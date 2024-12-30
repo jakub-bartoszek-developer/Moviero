@@ -5,7 +5,7 @@ export const Container = styled.div`
  display: flex;
  flex-direction: column;
  justify-content: space-between;
- padding-top: 72px;
+ padding-top: 50px;
 `;
 
 export const SearchResultsList = styled.ul`

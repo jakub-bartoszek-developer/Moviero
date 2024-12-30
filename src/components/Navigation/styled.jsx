@@ -9,7 +9,7 @@ export const Wrapper = styled.nav`
   rgba(0, 34, 44, 0.5) 0%,
   rgba(0, 34, 44, 1) 100%
  );
- height: 72px;
+ height: 50px;
  border-bottom: 2px solid #ffffff30;
  position: fixed;
  top: 0;
@@ -25,12 +25,14 @@ export const Container = styled.div`
  display: grid;
  align-items: center;
  justify-content: space-between;
- gap: 16px;
+ gap: 8px;
  grid-template-columns: 1fr 1fr 1fr;
  position: relative;
 
  @media (max-width: ${({ theme }) => theme.breakpoints.s}) {
   grid-template-columns: auto auto 1fr;
+   padding: 0 8px;
+
  }
 
  @media (max-width: ${({ theme }) => theme.breakpoints.xs}) {
@@ -71,8 +73,8 @@ export const MenuHeader = styled.div`
 export const MenuButton = styled(Menu)`
  display: none;
  color: ${({ theme }) => theme.colors.site.primaryText};
- height: 32px;
- width: 32px;
+ height: 28px;
+ width: 28px;
  cursor: pointer;
 
  @media (max-width: ${({ theme }) => theme.breakpoints.s}) {
