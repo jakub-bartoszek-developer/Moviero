@@ -14,14 +14,14 @@ import {
  OutOf
 } from "./styled";
 
-export const Banner = ({ currentMovie, movieGenres }) => {
+export const Banner = ({ movie, movieGenres }) => {
  return (
   <BannerWrapper
-   key={currentMovie.id}
-   $bgImage={`https://image.tmdb.org/t/p/original/${currentMovie.backdrop_path}`}
+   key={movie.id}
+   $bgImage={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
   >
    <MovieDetails>
-    <Title to={toMovie({ id: currentMovie.id })}>{currentMovie.title}</Title>
+    <Title to={toMovie({ id: movie.id })}>{movie.title}</Title>
     <Genres>
      {movieGenres.map((genre) => (
       <Genre key={nanoid()}>{genre.name}</Genre>
@@ -30,11 +30,11 @@ export const Banner = ({ currentMovie, movieGenres }) => {
     <Rating>
      <StarIcon />
      <Rate>
-      {(currentMovie?.vote_average ?? 0).toFixed(1)}/<OutOf>10</OutOf>
-      <Votes>&nbsp;{currentMovie?.vote_count} votes</Votes>
+      {(movie?.vote_average ?? 0).toFixed(1)}/<OutOf>10</OutOf>
+      <Votes>&nbsp;{movie?.vote_count} votes</Votes>
      </Rate>
     </Rating>
-    <Description>{currentMovie?.overview}</Description>
+    <Description>{movie?.overview}</Description>
    </MovieDetails>
   </BannerWrapper>
  );

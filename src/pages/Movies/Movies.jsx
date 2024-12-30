@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { Container } from "../../components/Container/styled";
 import { useSearchParams } from "react-router-dom";
 import { PopularMovies } from "./PopularMovies/PopularMovies";
 import { SearchedMovies } from "./SearchedMovies/SearchedMovies";
@@ -19,9 +18,7 @@ const Movies = () => {
  }, []);
 
  return (
-  <Container>
-   {searchParams.get("search") ? <SearchedMovies /> : <PopularMovies />}
-  </Container>
+  <>{searchParams.get("search") ? <SearchedMovies /> : <PopularMovies />}</>
  );
 };
 

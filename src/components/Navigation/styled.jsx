@@ -6,7 +6,7 @@ export const Wrapper = styled.nav`
  width: 100%;
  background: linear-gradient(
   ${({ theme }) => `${theme.colors.tile.background}`},
-  ${({ theme }) => `${theme.colors.tile.background}50`}
+  ${({ theme }) => `${theme.colors.tile.background}aa`}
  );
  height: 50px;
  border-bottom: 2px solid #ffffff30;

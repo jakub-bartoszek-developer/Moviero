@@ -53,33 +53,35 @@ export const PopularMovies = () => {
  switch (status) {
   case "success":
    return (
-    <Container ref={containerRef}>
+    <>
      <Header
       currentMovie={currentMovie}
       setCurrentMovie={setCurrentMovie}
       genres={genres}
      />
-     {popularMovies.length > 0 && (
-      <VerticalSection>
-       <SectionHeader>Popular movies</SectionHeader>
-       <PopularMoviesList>
-        {popularMovies.map((movie) => (
-         <MovieTile
-          genres={genres}
-          key={movie.id}
-          movie={movie}
-         />
-        ))}
-       </PopularMoviesList>
-      </VerticalSection>
-     )}
-     <Pagination
-      containerRef={containerRef}
-      searchParams={searchParams}
-      setSearchParams={setSearchParams}
-      totalPages={totalPages}
-     />
-    </Container>
+     <Container ref={containerRef}>
+      {popularMovies.length > 0 && (
+       <VerticalSection>
+        <SectionHeader>Popular movies</SectionHeader>
+        <PopularMoviesList>
+         {popularMovies.map((movie) => (
+          <MovieTile
+           genres={genres}
+           key={movie.id}
+           movie={movie}
+          />
+         ))}
+        </PopularMoviesList>
+       </VerticalSection>
+      )}
+      <Pagination
+       containerRef={containerRef}
+       searchParams={searchParams}
+       setSearchParams={setSearchParams}
+       totalPages={totalPages}
+      />
+     </Container>
+    </>
    );
   case "loading":
    return <Loader />;
