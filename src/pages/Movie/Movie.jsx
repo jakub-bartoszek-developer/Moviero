@@ -7,11 +7,12 @@ import {
  selectMovieCredits,
  selectStatus
 } from "../../utils/redux/movieSlice";
+import { MovieTeamSection } from "../../components/MovieTeamSection/MovieTeamSection";
+import { Container } from "../../components/Container/styled";
+import { setCategory } from "../../utils/redux/searchSlice";
 import { Loader } from "../../components/Loader/Loader";
 import {
  Banner,
- Cast,
- Crew,
  Description,
  Genre,
  Genres,
@@ -19,26 +20,28 @@ import {
  OutOf,
  Rate,
  Rating,
- SectionWrapper,
  StarIcon,
  Tagline,
  Title,
  Votes,
- Year,
- SectionHeader
+ Year
 } from "./styled";
-import { nanoid } from "nanoid";
-import { Container } from "../../components/Container/styled";
-import { PersonTile } from "../../components/PersonTile/PersonTile";
-import { setCategory } from "../../utils/redux/searchSlice";
 
 const Movie = () => {
  const { id } = useParams();
  const dispatch = useDispatch();
- const movie = useSelector(selectMovie);
- const movieCredits = useSelector(selectMovieCredits);
+ const {
+  backdrop_path,
+  title,
+  tagline,
+  release_date,
+  genres,
+  vote_average,
+  vote_count,
+  overview
+ } = useSelector(selectMovie);
+ const { cast, crew } = useSelector(selectMovieCredits);
  const status = useSelector(selectStatus);
- const genres = movie?.genres?.map((genre) => Object.values(genre)[1]);
 
  useEffect(() => {
   window.scrollTo(0, 0);
@@ -54,57 +57,31 @@ const Movie = () => {
   case "success":
    return (
     <Container>
-     <Banner
-      key={movie.id}
-      $bgImage={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
-     >
+     <Banner $bgImage={`https://image.tmdb.org/t/p/original/${backdrop_path}`}>
       <MovieDetails>
-       {movie.title && <Title>{movie.title}</Title>}
-       {movie.tagline && <Tagline>&quot;{movie.tagline}&quot;</Tagline>}
-       {movie.release_date && <Year>{movie.release_date?.slice(0, 4)}</Year>}
+       {title && <Title>{title}</Title>}
+       {tagline && <Tagline>&quot;{tagline}&quot;</Tagline>}
+       {release_date && <Year>{release_date?.slice(0, 4)}</Year>}
        <Genres>
-        {genres?.map((genre) => (
-         <Genre key={nanoid()}>{genre}</Genre>
+        {genres.map((genre) => (
+         <Genre key={genre.id}>{genre.name}</Genre>
         ))}
        </Genres>
        <Rating>
         <StarIcon />
         <Rate>
-         {movie.vote_average?.toFixed(1)}/<OutOf>10</OutOf>
-         <Votes>&nbsp;{movie.vote_count} votes</Votes>
+         {vote_average?.toFixed(1)}/<OutOf>10</OutOf>
+         <Votes>&nbsp;{vote_count} votes</Votes>
         </Rate>
        </Rating>
-       <Description>{movie.overview}</Description>
+       <Description>{overview}</Description>
       </MovieDetails>
      </Banner>
 
-     {movieCredits.cast?.length && (
-      <SectionWrapper>
-       <SectionHeader>Cast</SectionHeader>
-       <Cast>
-        {movieCredits.cast.map((person) => (
-         <PersonTile
-          key={nanoid()}
-          person={person}
-         />
-        ))}
-       </Cast>
-      </SectionWrapper>
-     )}
-
-     {movieCredits.crew?.length && (
-      <SectionWrapper>
-       <SectionHeader>Crew</SectionHeader>
-       <Crew>
-        {movieCredits.crew.map((person) => (
-         <PersonTile
-          key={nanoid()}
-          person={person}
-         />
-        ))}
-       </Crew>
-      </SectionWrapper>
-     )}
+     <MovieTeamSection
+      cast={cast}
+      crew={crew}
+     />
     </Container>
    );
   case "loading":
