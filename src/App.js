@@ -1,4 +1,4 @@
-import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Movies from "./pages/Movies/Movies";
 import Movie from "./pages/Movie/Movie";
 import People from "./pages/People/People";
@@ -8,7 +8,7 @@ import { Navigation } from "./components/Navigation/Navigation";
 
 function App() {
  return (
-  <HashRouter future={{
+  <BrowserRouter future={{
    v7_startTransition: true,
    v7_relativeSplatPath: true
   }}>
@@ -20,7 +20,7 @@ function App() {
     <Route path={toPerson()} element={<Person />} />
     <Route path="/" element={<Navigate to="/movies" />} />
    </Routes>
-  </HashRouter>
+  </BrowserRouter>
  );
 }
 
