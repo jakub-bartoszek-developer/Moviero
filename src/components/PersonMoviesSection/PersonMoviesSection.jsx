@@ -1,33 +1,35 @@
+import { useState } from "react";
 import { MovieTile } from "../MovieTile/MovieTile";
-import { MovieList, SectionHeader, SectionWrapper } from "./styled";
+import {
+ MovieList,
+ SectionHeader,
+ SectionWrapper,
+ ShowMoreButton
+} from "./styled";
 
-export const PersonMoviesSection = ({ cast, crew }) => {
+export const PersonMoviesSection = ({ movies }) => {
+ const [showAllMovies, setShowAllMovies] = useState(false);
+
+ const visibleMovies = showAllMovies ? movies : movies.slice(0, 12);
+
  return (
   <>
-   {cast?.length > 0 && (
+   {movies?.length > 0 && (
     <SectionWrapper>
-     <SectionHeader>Cast</SectionHeader>
+     <SectionHeader>Movies</SectionHeader>
      <MovieList>
-      {cast.map((movie) => (
+      {visibleMovies.map((movie) => (
        <MovieTile
         key={movie.id}
         movie={movie}
        />
       ))}
      </MovieList>
-    </SectionWrapper>
-   )}
-   {crew?.length > 0 && (
-    <SectionWrapper>
-     <SectionHeader>Crew</SectionHeader>
-     <MovieList>
-      {crew.map((movie) => (
-       <MovieTile
-        key={movie.id}
-        movie={movie}
-       />
-      ))}
-     </MovieList>
+     {movies.length > 12 && (
+      <ShowMoreButton onClick={() => setShowAllMovies((prev) => !prev)}>
+       {showAllMovies ? "Show Less" : "Show More"}
+      </ShowMoreButton>
+     )}
     </SectionWrapper>
    )}
   </>

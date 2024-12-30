@@ -12,15 +12,27 @@ export const SectionHeader = styled.h2`
  padding: 24px 0 12px 0;
 `;
 
-export const MovieList = styled.ul`
+export const PeopleList = styled.ul`
  display: grid;
- grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+ grid-template-columns: repeat(6, 1fr);
  gap: 16px;
  list-style: none;
  padding: 0;
 
+ @media (max-width: ${({ theme }) => theme.breakpoints.l}) {
+  grid-template-columns: repeat(5, 1fr);
+ }
+
  @media (max-width: ${({ theme }) => theme.breakpoints.m}) {
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
+ }
+
+ @media (max-width: ${({ theme }) => theme.breakpoints.s}) {
+  grid-template-columns: repeat(3, 1fr);
+ }
+
+ @media (max-width: ${({ theme }) => theme.breakpoints.xs}) {
+  grid-template-columns: repeat(2, 1fr);
  }
 `;
 

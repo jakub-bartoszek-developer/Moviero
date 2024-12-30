@@ -14,7 +14,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
 export const PersonTile = ({ person }) => {
- const { id, name, profile_path, job, character } = person;
+ const { id, name, profile_path, jobs, characters } = person;
 
  return (
   <Wrapper>
@@ -36,8 +36,8 @@ export const PersonTile = ({ person }) => {
     </ImageWrapper>
     <Content>
      <Name>{name}</Name>
-     {job && <Job>{job}</Job>}
-     {character && <Role>{character}</Role>}
+     {jobs && <Job>{jobs.join(", ")}</Job>}
+     {characters && <Role>{characters}</Role>}
     </Content>
    </StyledLink>
   </Wrapper>
