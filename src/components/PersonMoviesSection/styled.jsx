@@ -23,3 +23,18 @@ export const MovieList = styled.ul`
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
  }
 `;
+
+export const ShowMoreButton = styled.button`
+ margin: 16px 0;
+ padding: 8px 16px;
+ font-size: 16px;
+ background-color: ${({ theme }) => theme.colors.tile.background};
+ color: white;
+ border: none;
+ border-radius: 4px;
+ cursor: pointer;
+
+ &:hover {
+  background-color: ${({ theme }) => theme.colors.tile.hoverBackground};
+ }
+`;
