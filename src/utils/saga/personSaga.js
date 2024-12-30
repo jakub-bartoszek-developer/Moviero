@@ -2,7 +2,6 @@ import { takeLatest, call, put } from "@redux-saga/core/effects";
 import {
  fetchPerson,
  setPerson,
- setPersonCredits,
  setStatus,
  setPersonMovies
 } from "../redux/personSlice";
@@ -25,7 +24,6 @@ function* fetchMovieHandler({ payload }) {
   const personMovies = [...personCredits.cast, ...personCredits.crew];
 
   yield put(setPerson(person));
-  yield put(setPersonCredits(personCredits));
   yield put(setPersonMovies(personMovies));
   yield put(setStatus("success"));
  } catch (error) {
