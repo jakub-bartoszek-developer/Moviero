@@ -5,9 +5,8 @@ import { ReactComponent as Menu } from "../../assets/icons/menu.svg";
 export const Wrapper = styled.nav`
  width: 100%;
  background: linear-gradient(
-  0deg,
-  rgba(0, 34, 44, 0.5) 0%,
-  rgba(0, 34, 44, 1) 100%
+  ${({ theme }) => `${theme.colors.tile.background}`},
+  ${({ theme }) => `${theme.colors.tile.background}50`}
  );
  height: 50px;
  border-bottom: 2px solid #ffffff30;
@@ -31,8 +30,7 @@ export const Container = styled.div`
 
  @media (max-width: ${({ theme }) => theme.breakpoints.s}) {
   grid-template-columns: auto auto 1fr;
-   padding: 0 8px;
-
+  padding: 0 8px;
  }
 
  @media (max-width: ${({ theme }) => theme.breakpoints.xs}) {
