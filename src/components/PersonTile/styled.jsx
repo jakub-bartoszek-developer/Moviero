@@ -51,12 +51,14 @@ export const Content = styled.div`
  }
 `;
 
-export const Name = styled.p``;
+export const Name = styled.p`
+ font-weight: 800;
+`;
 
 export const Role = styled.p`
- color: ${({ theme }) => theme.colors.site.textMuted};
+ color: ${({ theme }) => theme.colors.site.mutedText};
 `;
 
 export const Job = styled.p`
- color: ${({ theme }) => theme.colors.site.textMuted};
+ color: ${({ theme }) => theme.colors.site.mutedText};
 `;
