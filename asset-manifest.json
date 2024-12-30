@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/moviero/static/css/main.7fbca2b7.css",
-    "main.js": "/moviero/static/js/main.2aa923fe.js",
+    "main.js": "/moviero/static/js/main.b064feb5.js",
     "static/js/488.172ce9bd.chunk.js": "/moviero/static/js/488.172ce9bd.chunk.js",
     "static/media/no-avatar.png": "/moviero/static/media/no-avatar.259bc23c9affb9bc70d3.png",
     "static/media/no-poster.png": "/moviero/static/media/no-poster.863553e6406af549a442.png",
@@ -10,11 +10,11 @@
     "static/media/search.svg": "/moviero/static/media/search.41e12b2e9125b7f2f4e0aa68493c6f32.svg",
     "static/media/menu.svg": "/moviero/static/media/menu.03fa6e3702cb0272e6691582549b5072.svg",
     "main.7fbca2b7.css.map": "/moviero/static/css/main.7fbca2b7.css.map",
-    "main.2aa923fe.js.map": "/moviero/static/js/main.2aa923fe.js.map",
+    "main.b064feb5.js.map": "/moviero/static/js/main.b064feb5.js.map",
     "488.172ce9bd.chunk.js.map": "/moviero/static/js/488.172ce9bd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7fbca2b7.css",
-    "static/js/main.2aa923fe.js"
+    "static/js/main.b064feb5.js"
   ]
 }
