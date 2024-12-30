@@ -51,7 +51,7 @@ export const SearchInput = styled.input`
 
 export const ResultList = styled.ul`
  position: absolute;
- top: 72px;
+ top: 50px;
  right: 0;
  display: flex;
  flex-direction: column;
