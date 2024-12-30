@@ -96,14 +96,14 @@ const Person = () => {
          <Biography ref={biographyRef}>{biography}</Biography>
         </BiographyWrapper>
         {isOverflow && !isExpanded && (
-         <ShowMoreButton onClick={toggleBiography}>Czytaj dalej</ShowMoreButton>
+         <ShowMoreButton onClick={toggleBiography}>Read more</ShowMoreButton>
         )}
         {isExpanded && (
          <ShowMoreButton
           $isExpanded={isExpanded}
           onClick={toggleBiography}
          >
-          Zwiń
+          Collapse
          </ShowMoreButton>
         )}
        </>

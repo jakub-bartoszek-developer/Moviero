@@ -3,10 +3,12 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 
 export const HorizontalSectionWrapper = styled.section`
  max-height: 300px;
- height: 70vw;
  width: 100%;
+ max-width: 1400px;
  display: grid;
  grid-template-rows: auto 1fr;
+ margin: 0 auto;
+ padding: 0 16px;
 `;
 
 export const PosterWrapper = styled.li`

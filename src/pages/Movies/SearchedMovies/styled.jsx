@@ -1,11 +1,15 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+ height: 100%;
  min-height: 100%;
  display: flex;
  flex-direction: column;
  justify-content: space-between;
- padding-top: 72px;
+ padding: 16px;
+ padding-top: 50px;
+ max-width: 1400px;
+ margin: 0 auto;
 `;
 
 export const SearchResultsList = styled.ul`

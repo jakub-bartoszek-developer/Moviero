@@ -42,7 +42,7 @@ export const Header = ({ currentMovie, setCurrentMovie, genres }) => {
   <>
    {currentMovie && (
     <Banner
-     currentMovie={currentMovie}
+     movie={currentMovie}
      movieGenres={movieGenres}
     />
    )}

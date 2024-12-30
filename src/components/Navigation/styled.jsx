@@ -5,12 +5,10 @@ import { ReactComponent as Menu } from "../../assets/icons/menu.svg";
 export const Wrapper = styled.nav`
  width: 100%;
  background: linear-gradient(
-  0deg,
-  rgba(0, 34, 44, 0.5) 0%,
-  rgba(0, 34, 44, 1) 100%
+  ${({ theme }) => `${theme.colors.tile.background}`},
+  ${({ theme }) => `${theme.colors.tile.background}dd`}
  );
- height: 72px;
- border-bottom: 2px solid #ffffff30;
+ height: 50px;
  position: fixed;
  top: 0;
  z-index: 2;
@@ -25,12 +23,13 @@ export const Container = styled.div`
  display: grid;
  align-items: center;
  justify-content: space-between;
- gap: 16px;
+ gap: 8px;
  grid-template-columns: 1fr 1fr 1fr;
  position: relative;
 
  @media (max-width: ${({ theme }) => theme.breakpoints.s}) {
   grid-template-columns: auto auto 1fr;
+  padding: 0 8px;
  }
 
  @media (max-width: ${({ theme }) => theme.breakpoints.xs}) {
@@ -71,8 +70,8 @@ export const MenuHeader = styled.div`
 export const MenuButton = styled(Menu)`
  display: none;
  color: ${({ theme }) => theme.colors.site.primaryText};
- height: 32px;
- width: 32px;
+ height: 28px;
+ width: 28px;
  cursor: pointer;
 
  @media (max-width: ${({ theme }) => theme.breakpoints.s}) {

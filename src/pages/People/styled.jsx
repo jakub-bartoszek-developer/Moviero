@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
- padding-top: 72px;
+ padding-top: 50px;
 `;
 
 export const PopularPeopleList = styled.ul`
