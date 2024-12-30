@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import {
  fetchPerson,
  selectPerson,
- selectPersonCredits,
+ selectPersonMovies,
  selectStatus
 } from "../../utils/redux/personSlice";
 import { useEffect } from "react";
@@ -24,11 +24,11 @@ import { setCategory } from "../../utils/redux/searchSlice";
 import { PersonMoviesSection } from "../../components/PersonMoviesSection/PersonMoviesSection";
 
 const Person = () => {
-  const dispatch = useDispatch();
+ const dispatch = useDispatch();
  const { id } = useParams();
  const { profile_path, name, birthday, place_of_birth, biography } =
   useSelector(selectPerson);
- const { cast, crew } = useSelector(selectPersonCredits);
+ const personMovies = useSelector(selectPersonMovies);
  const status = useSelector(selectStatus);
 
  useEffect(() => {
@@ -64,10 +64,7 @@ const Person = () => {
       </PersonDetails>
       {biography && <Biography>{biography}</Biography>}
      </Banner>
-     <PersonMoviesSection
-      cast={cast}
-      crew={crew}
-     />
+     <PersonMoviesSection movies={personMovies} />
     </Container>
    );
   case "loading":
