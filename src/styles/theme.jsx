@@ -2,7 +2,7 @@ const colorNames = {
  White: "#FFFFFF",
  Black: "#000000",
  Raven: "#0a0a0a",
- DarkGrey: "hsl(0, 0%, 10%)",
+ DarkGrey: "#1a1a1a",
  Grey: "#262626",
  LightGrey: "#737373",
  FadedBlack: "#00000050"
