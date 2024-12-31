@@ -1,11 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
-import { PopularMoviesList, Container } from "./styled";
-import { Loader } from "../../../components/Loader/Loader";
-import { Pagination } from "../../../components/Pagination/Pagination";
-import { VerticalSection } from "../../../components/VerticalSection/styled";
-import { SectionHeader } from "../../../components/SectionHeader/styled";
 import {
  fetchPopularMovies,
  selectGenres,
@@ -15,9 +10,13 @@ import {
  selectTotalPages,
  setRandomPopularMovie
 } from "../../../utils/redux/moviesSlice";
-import { MovieTile } from "../../../components/MovieTile/MovieTile";
-
+import { Loader } from "../../../components/Loader/Loader";
+import { Container, PopularMoviesList } from "./styled";
 import { Header } from "../../../components/Header/Header";
+import { VerticalSection } from "../../../components/VerticalSection/styled";
+import { SectionHeader } from "../../../components/SectionHeader/styled";
+import { MovieTile } from "../../../components/MovieTile/MovieTile";
+import { Pagination } from "../../../components/Pagination/Pagination";
 
 export const PopularMovies = () => {
  const dispatch = useDispatch();
@@ -26,9 +25,10 @@ export const PopularMovies = () => {
  const randomPopularMovie = useSelector(selectRandomPopularMovie);
  const totalPages = useSelector(selectTotalPages);
  const genres = useSelector(selectGenres);
+ const containerRef = useRef(null);
  const [currentMovie, setCurrentMovie] = useState(randomPopularMovie);
  const [searchParams, setSearchParams] = useSearchParams();
- const containerRef = useRef(null);
+ const currentPage = parseInt(searchParams.get("page") || "1", 10);
 
  useEffect(() => {
   if (searchParams.get("page")) {
@@ -50,42 +50,48 @@ export const PopularMovies = () => {
   }
  }, [randomPopularMovie]);
 
- switch (status) {
-  case "success":
-   return (
-    <>
-     <Header
-      currentMovie={currentMovie}
-      setCurrentMovie={setCurrentMovie}
-      genres={genres}
-     />
-     <Container ref={containerRef}>
-      {popularMovies.length > 0 && (
-       <VerticalSection>
-        <SectionHeader>Popular movies</SectionHeader>
-        <PopularMoviesList>
-         {popularMovies.map((movie) => (
-          <MovieTile
-           genres={genres}
-           key={movie.id}
-           movie={movie}
-          />
-         ))}
-        </PopularMoviesList>
-       </VerticalSection>
-      )}
-      <Pagination
-       containerRef={containerRef}
-       searchParams={searchParams}
-       setSearchParams={setSearchParams}
-       totalPages={totalPages}
-      />
-     </Container>
-    </>
-   );
-  case "loading":
-   return <Loader />;
-  default:
-   return <>Error</>;
+ if (status === "loading") {
+  return <Loader />;
  }
+
+ if (status !== "success") {
+  return <div>Error</div>;
+ }
+
+ return (
+  <>
+   {currentPage === 1 && (
+    <Header
+     currentMovie={currentMovie}
+     setCurrentMovie={setCurrentMovie}
+     genres={genres}
+    />
+   )}
+   <Container ref={containerRef}>
+    {popularMovies.length > 0 && (
+     <VerticalSection>
+      <SectionHeader>
+       Popular movies{" "}
+       {currentPage > 1 && `- Page ${currentPage} of ${totalPages}`}
+      </SectionHeader>
+      <PopularMoviesList>
+       {popularMovies.map((movie) => (
+        <MovieTile
+         genres={genres}
+         key={movie.id}
+         movie={movie}
+        />
+       ))}
+      </PopularMoviesList>
+     </VerticalSection>
+    )}
+    <Pagination
+     containerRef={containerRef}
+     searchParams={searchParams}
+     setSearchParams={setSearchParams}
+     totalPages={totalPages}
+    />
+   </Container>
+  </>
+ );
 };
