@@ -1,11 +1,10 @@
 const colorNames = {
  White: "#FFFFFF",
  Black: "#000000",
- Swamp: "#00141a",
- Cyan: "#00ffff",
- Daintree: "#00222C",
- SherpaBlue: "#003F52",
- SilverChalice: "#a8a8a8",
+ Raven: "#0a0a0a",
+ DarkGrey: "#1a1a1a",
+ Grey: "#262626",
+ LightGrey: "#737373",
  FadedBlack: "#00000050"
 };
 
@@ -20,15 +19,14 @@ export const theme = {
 
  colors: {
   site: {
-   background: colorNames.Swamp,
+   background: colorNames.Raven,
    text: colorNames.White,
-   primaryText: colorNames.Cyan,
-   mutedText: colorNames.SilverChalice,
+   mutedText: colorNames.LightGrey,
    blurredBackground: colorNames.FadedBlack
   },
   tile: {
-   background: colorNames.Daintree,
-   hoverBackground: colorNames.SherpaBlue
+   background: colorNames.DarkGrey,
+   hoverBackground: colorNames.Grey
   }
  }
 };

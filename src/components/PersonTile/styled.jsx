@@ -14,6 +14,7 @@ export const StyledLink = styled(Link)`
  cursor: pointer;
  height: 100%;
  text-decoration: none;
+ overflow: hidden;
 
  &:hover {
   background-color: ${({ theme }) => theme.colors.tile.hoverBackground};

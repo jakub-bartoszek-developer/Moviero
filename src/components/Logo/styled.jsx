@@ -5,8 +5,7 @@ export const Wrapper = styled(NavLink)`
  width: min-content;
  font-size: 32px;
  font-weight: 700;
- color: ${({ theme }) => theme.colors.site.primaryText};
- text-shadow: 0 0 15px ${({ theme }) => theme.colors.site.primaryText};
+ color: ${({ theme }) => theme.colors.site.text};
  text-decoration: none;
 
  @media (max-width: ${({ theme }) => theme.breakpoints.s}) {
