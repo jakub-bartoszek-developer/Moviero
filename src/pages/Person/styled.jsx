@@ -18,9 +18,10 @@ export const Banner = styled.div`
 export const ImageWrapper = styled.div`
  height: 450px;
  width: 300px;
- background-color: blue;
  grid-row: 1/4;
  margin-right: 16px;
+ border-radius: 8px;
+ overflow: hidden;
 
  @media (max-width: ${({ theme }) => theme.breakpoints.m}) {
   height: 300px;
@@ -49,16 +50,14 @@ export const Name = styled.h1`
 export const Birthdate = styled.div`
  &::before {
   content: "Date of birth: ";
-  font-weight: bold;
-  color: #555;
+  color: ${({ theme }) => theme.colors.site.mutedText};
  }
 `;
 
 export const Birthplace = styled.div`
  &::before {
   content: "Place of birth: ";
-  font-weight: bold;
-  color: #555;
+  color: ${({ theme }) => theme.colors.site.mutedText};
  }
 `;
 
@@ -94,7 +93,7 @@ export const Biography = styled.p`
 export const ShowMoreButton = styled.button`
  height: min-content;
  background-color: ${({ theme }) => theme.colors.site.background};
- color: ${({ theme }) => theme.colors.site.primaryText};
+ color: ${({ theme }) => theme.colors.site.text};
  border: none;
  z-index: 20;
  cursor: pointer;
@@ -107,6 +106,6 @@ export const ShowMoreButton = styled.button`
  }
 
  &:hover {
-  text-shadow: 0 0 15px ${({ theme }) => theme.colors.site.primaryText};
+  text-shadow: 0 0 15px ${({ theme }) => theme.colors.site.text};
  }
 `;
