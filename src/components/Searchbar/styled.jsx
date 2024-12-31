@@ -58,8 +58,9 @@ export const ResultList = styled.ul`
  padding: 8px;
  width: 70vw;
  max-width: 500px;
- border: 2px solid #3c4a53;
- background-color: ${({ theme }) => theme.colors.tile.background};
+ border: 2px solid ${({ theme }) => theme.colors.tile.background};
+ background-color: ${({ theme }) => theme.colors.site.background};
+ border-radius: 0 0 8px 8px ;
  border-top: none;
  gap: 8px;
  max-height: 80vh;
