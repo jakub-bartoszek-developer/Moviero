@@ -1,13 +1,6 @@
-import { nanoid } from "nanoid";
-import { Container, PopularPeopleList } from "../styled";
-import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
-import { Loader } from "../../../components/Loader/Loader";
-import { Pagination } from "../../../components/Pagination/Pagination";
-import { PersonTile } from "../../../components/PersonTile/PersonTile";
-import { VerticalSection } from "../../../components/VerticalSection/styled";
-import { SectionHeader } from "../../../components/SectionHeader/styled";
+import { useDispatch, useSelector } from "react-redux";
 import {
  fetchSearchResults,
  selectSearchResults,
@@ -15,6 +8,13 @@ import {
  selectTotalPages,
  selectTotalResults
 } from "../../../utils/redux/searchSlice";
+import { Container, PopularPeopleList } from "../styled";
+import { Loader } from "../../../components/Loader/Loader";
+import { Pagination } from "../../../components/Pagination/Pagination";
+import { PersonTile } from "../../../components/PersonTile/PersonTile";
+import { VerticalSection } from "../../../components/VerticalSection/styled";
+import { SectionHeader } from "../../../components/SectionHeader/styled";
+import { Error } from "../../../components/Error/Error";
 
 export const SearchedPeople = () => {
  const dispatch = useDispatch();
@@ -42,36 +42,37 @@ export const SearchedPeople = () => {
   }
  }, [searchParams, dispatch]);
 
- switch (status) {
-  case "success":
-   return (
-    <Container ref={containerRef}>
-     {searchResults.length && (
-      <VerticalSection>
-       <SectionHeader>
-        {`Search results for "${searchParams.get("search")}" (${totalResults})`}
-       </SectionHeader>
-       <PopularPeopleList>
-        {searchResults.map((person) => (
-         <PersonTile
-          key={nanoid()}
-          person={person}
-         />
-        ))}
-       </PopularPeopleList>
-      </VerticalSection>
-     )}
-     <Pagination
-      containerRef={containerRef}
-      searchParams={searchParams}
-      setSearchParams={setSearchParams}
-      totalPages={totalPages}
-     />
-    </Container>
-   );
-  case "loading":
-   return <Loader />;
-  default:
-   return <>Error</>;
+ if (status === "loading") {
+  return <Loader />;
  }
+
+ if (status !== "success") {
+  return <Error />;
+ }
+
+ return (
+  <Container ref={containerRef}>
+   {searchResults.length && (
+    <VerticalSection>
+     <SectionHeader>
+      {`Search results for "${searchParams.get("search")}" (${totalResults})`}
+     </SectionHeader>
+     <PopularPeopleList>
+      {searchResults.map((person) => (
+       <PersonTile
+        key={person.id}
+        person={person}
+       />
+      ))}
+     </PopularPeopleList>
+    </VerticalSection>
+   )}
+   <Pagination
+    containerRef={containerRef}
+    searchParams={searchParams}
+    setSearchParams={setSearchParams}
+    totalPages={totalPages}
+   />
+  </Container>
+ );
 };

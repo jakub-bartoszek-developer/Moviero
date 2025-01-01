@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { ReactComponent as Star } from "../../assets/icons/star.svg";
+import { ReactComponent as Play } from "../../assets/icons/play.svg";
 import { Link } from "react-router-dom";
 
 export const BannerWrapper = styled.div`
@@ -128,11 +129,40 @@ export const OutOf = styled.span`
 
 export const Votes = styled.span`
  font-weight: 300;
- color: ${({ theme }) => theme.colors.site.mutedText};
+ color: ${({ theme }) => theme.colors.site.text}bb;
  font-size: 16px;
 
  @media (max-width: ${({ theme }) => theme.breakpoints.s}) {
   font-size: 10px;
+ }
+`;
+
+export const StyledLink = styled(Link)`
+ color: black;
+ padding: 8px 16px;
+ font-weight: 500;
+ width: min-content;
+ white-space: nowrap;
+ background-color: white;
+ text-decoration: none;
+ border-radius: 5px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ cursor: pointer;
+ transition: background-color 0.3s ease, transform 0.2s ease;
+`;
+
+export const PlayIcon = styled(Play)`
+ height: 0;
+ width: 0;
+ margin-right: 0;
+ transition: 300ms;
+
+ ${StyledLink}:hover & {
+  height: 16px;
+  width: 16px;
+  margin-right: 8px;
  }
 `;
 
@@ -152,5 +182,56 @@ export const Description = styled.p`
   width: 100%;
   margin-top: auto;
   margin-bottom: 0;
+ }
+`;
+
+export const Tagline = styled.p`
+ font-size: 20px;
+ font-style: italic;
+ font-weight: 300;
+ margin-top: 8px;
+ color: ${({ theme }) => theme.colors.site.text};
+ text-shadow: 0 0 10px black, 0 0 20px black;
+
+ @media (max-width: ${({ theme }) => theme.breakpoints.s}) {
+  font-size: 14px;
+ }
+`;
+
+export const AdditionalDetails = styled.div`
+ display: flex;
+ flex-direction: column;
+ gap: 8px;
+ margin-top: 20px;
+ color: ${({ theme }) => theme.colors.site.text};
+`;
+
+export const ReleaseDate = styled.p`
+ font-weight: 300;
+ color: ${({ theme }) => theme.colors.site.text}bb;
+
+ @media (max-width: ${({ theme }) => theme.breakpoints.s}) {
+  font-size: 14px;
+ }
+
+ &::before {
+  font-weight: 500;
+  content: "Release Date: ";
+  color: ${({ theme }) => theme.colors.site.text};
+ }
+`;
+
+export const Duration = styled.p`
+ font-weight: 300;
+ color: ${({ theme }) => theme.colors.site.text}bb;
+
+ @media (max-width: ${({ theme }) => theme.breakpoints.s}) {
+  font-size: 14px;
+ }
+
+ &::before {
+  font-weight: 500;
+  content: "Duration: ";
+  color: ${({ theme }) => theme.colors.site.text};
  }
 `;

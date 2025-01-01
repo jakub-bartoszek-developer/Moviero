@@ -1,7 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
-import { nanoid } from "nanoid";
 import {
  fetchSearchResults,
  selectSearchResults,
@@ -18,6 +17,7 @@ import { SearchResultsList, Container } from "./styled";
 import { VerticalSection } from "../../../components/VerticalSection/styled";
 import { SectionHeader } from "../../../components/SectionHeader/styled";
 import { MovieTile } from "../../../components/MovieTile/MovieTile";
+import { Error } from "../../../components/Error/Error";
 
 export const SearchedMovies = () => {
  const dispatch = useDispatch();
@@ -28,67 +28,62 @@ export const SearchedMovies = () => {
  const totalResults = useSelector(selectTotalResults);
 
  const [searchParams, setSearchParams] = useSearchParams();
+ const currentPage = parseInt(searchParams.get("page") || "1", 10);
+ const searchQuery = searchParams.get("search") || "";
  const containerRef = useRef(null);
 
  useEffect(() => {
-  searchParams.set("page", 1);
-  setSearchParams(searchParams);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
- }, []);
-
- useEffect(() => {
-  if (searchParams.get("page")) {
+  if (searchQuery) {
    dispatch(
     fetchSearchResults({
-     searchQuery: searchParams.get("search"),
-     page: searchParams.get("page"),
+     searchQuery,
+     page: currentPage,
      category: "movie"
     })
    );
   }
- }, [searchParams, dispatch]);
+ }, [searchQuery, currentPage, dispatch]);
 
- switch (status) {
-  case "success":
-   return (
-    <Container ref={containerRef}>
-     {searchResults.length ? (
-      <>
-       <VerticalSection>
-        <SectionHeader>
-         {`Search results for "${searchParams.get(
-          "search"
-         )}" (${totalResults})`}
-        </SectionHeader>
-        <SearchResultsList>
-         {searchResults.map((movie) => (
-          <MovieTile
-           genres={genres}
-           key={nanoid()}
-           movie={movie}
-          />
-         ))}
-        </SearchResultsList>
-       </VerticalSection>
-       <Pagination
-        containerRef={containerRef}
-        searchParams={searchParams}
-        setSearchParams={setSearchParams}
-        totalPages={totalPages}
-       />
-      </>
-     ) : (
-      <VerticalSection>
-       <SectionHeader>
-        {`No search results for "${searchParams.get("search")}"`}
-       </SectionHeader>
-      </VerticalSection>
-     )}
-    </Container>
-   );
-  case "loading":
-   return <Loader />;
-  default:
-   return <>Error</>;
+ if (status === "loading") {
+  return <Loader />;
  }
+
+ if (status !== "success") {
+  return <Error />;
+ }
+
+ return (
+  <Container ref={containerRef}>
+   {searchResults.length > 0 ? (
+    <>
+     <VerticalSection>
+      <SectionHeader>
+       {`Search results for "${searchQuery}" (${totalResults}) - Page ${currentPage} of ${totalPages}`}
+      </SectionHeader>
+      <SearchResultsList>
+       {searchResults.map((movie) => (
+        <MovieTile
+         genres={genres}
+         key={movie.id}
+         movie={movie}
+        />
+       ))}
+      </SearchResultsList>
+     </VerticalSection>
+     <Pagination
+      containerRef={containerRef}
+      searchParams={searchParams}
+      setSearchParams={setSearchParams}
+      totalPages={totalPages}
+     />
+    </>
+   ) : (
+    <VerticalSection>
+     <SectionHeader>
+      {`No search results found for "${searchQuery}".`}
+     </SectionHeader>
+    </VerticalSection>
+   )}
+  </Container>
+ );
 };

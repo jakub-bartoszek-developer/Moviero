@@ -1,4 +1,13 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+ fetchSearchbarResults,
+ selectSearchQuery,
+ selectSearchbarResults,
+ setSearchQuery,
+ selectCategory,
+ selectSearchbarStatus
+} from "../../utils/redux/searchSlice";
 import {
  Container,
  ResultList,
@@ -8,23 +17,15 @@ import {
  SearchIcon,
  SearchInput
 } from "./styled";
-import {
- fetchSearchbarResults,
- selectSearchQuery,
- selectSearchbarResults,
- setSearchQuery,
- selectCategory,
- selectSearchbarStatus
-} from "../../utils/redux/searchSlice";
-import { useDispatch, useSelector } from "react-redux";
-import { nanoid } from "nanoid";
+
 import { SearchTile } from "../SearchTile/SearchTile";
 import { Loader } from "../Loader/Loader";
 import { useNavigate } from "react-router-dom";
+import { Error } from "../Error/Error";
 
 const SearchResults = React.memo(({ results, status, switchSearchbar }) => {
  if (status === "error") {
-  return <ResultStatus>Error</ResultStatus>;
+  return <Error />;
  }
 
  if (status === "loading") {
@@ -40,7 +41,7 @@ const SearchResults = React.memo(({ results, status, switchSearchbar }) => {
    results.map((item) => (
     <SearchTile
      switchSearchbar={switchSearchbar}
-     key={nanoid()}
+     key={item.id}
      item={item}
     />
    ))
@@ -119,7 +120,11 @@ export const Searchbar = () => {
     ref={wrapperRef}
     $isExpanded={isExpanded}
    >
-    <SearchButton onClick={switchSearchbar}>
+    <SearchButton
+     onClick={
+      isExpanded && searchQuery.length > 0 ? onFormSubmit : switchSearchbar
+     }
+    >
      <SearchIcon />
     </SearchButton>
     <SearchInput

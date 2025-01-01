@@ -4,7 +4,7 @@ const colorNames = {
  Raven: "#0a0a0a",
  DarkGrey: "#1a1a1a",
  Grey: "#262626",
- LightGrey: "#737373",
+ FadedWhite: "#ffffff77",
  FadedBlack: "#00000050"
 };
 
@@ -21,7 +21,7 @@ export const theme = {
   site: {
    background: colorNames.Raven,
    text: colorNames.White,
-   mutedText: colorNames.LightGrey,
+   mutedText: colorNames.FadedWhite,
    blurredBackground: colorNames.FadedBlack
   },
   tile: {

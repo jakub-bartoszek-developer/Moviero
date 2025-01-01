@@ -5,16 +5,16 @@ import { ReactComponent as Menu } from "../../assets/icons/menu.svg";
 export const Wrapper = styled.nav`
  width: 100%;
  background: ${({ theme }) =>
-  `linear-gradient(${theme.colors.site.background}, ${theme.colors.site.background}dd)`};
+  `linear-gradient(${theme.colors.tile.background}, ${theme.colors.tile.background}dd)`};
  height: 50px;
  position: fixed;
  top: 0;
- z-index: 2;
+ z-index: 3;
  backdrop-filter: blur(2px);
  box-shadow: 0 0 15px 0 black;
 `;
 
-export const Container = styled.div`
+export const Content = styled.div`
  height: 100%;
  margin: 0 auto;
  max-width: 1400px;
@@ -54,9 +54,18 @@ export const StyledNavLink = styled(NavLink)`
  padding: 16px;
  color: ${({ theme }) => theme.colors.site.text};
  white-space: nowrap;
+ transition: 300ms;
 
  @media (max-width: ${({ theme }) => theme.breakpoints.s}) {
   display: none;
+ }
+
+ &.active {
+  text-shadow: 0 0 15px ${({ theme }) => theme.colors.site.text};
+ }
+
+ &:hover {
+  text-shadow: 0 0 15px ${({ theme }) => theme.colors.site.text};
  }
 `;
 
@@ -89,40 +98,4 @@ export const MenuLogo = styled.div`
  color: ${({ theme }) => theme.colors.site.text};
  text-shadow: 0 0 15px ${({ theme }) => theme.colors.site.text};
  text-decoration: none;
-`;
-
-export const SidebarNavLink = styled(NavLink)`
- text-decoration: none;
- font-size: 16px;
- font-weight: 400;
- color: ${({ theme }) => theme.colors.site.text};
- white-space: nowrap;
- width: 100%;
-`;
-
-export const SidebarWrapper = styled.div`
- position: absolute;
- display: flex;
- top: 0;
- left: ${({ $isShowed }) => ($isShowed ? "0vw" : "-100vw")};
- height: 100vh;
- width: 100vw;
- display: flex;
- z-index: 3;
-
- transition: all 0.5s;
-`;
-
-export const Sidebar = styled.div`
- width: 70%;
- display: flex;
- flex-direction: column;
- padding: 20px 16px;
- gap: 16px;
- background-color: ${({ theme }) => theme.colors.site.background};
- box-shadow: 0 0 80px 30px black;
-`;
-
-export const SidebarBackground = styled.div`
- width: 30%;
 `;
