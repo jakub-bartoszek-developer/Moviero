@@ -11,8 +11,8 @@ export const Container = styled.div`
 `;
 
 export const SearchbarWrapper = styled.form`
- width: ${({ $isExpanded }) => ($isExpanded ? "100%" : "36px")};
- height: 36px;
+ width: ${({ $isExpanded }) => ($isExpanded ? "100%" : "32px")};
+ height: 32px;
  transition: all 0.3s;
  display: grid;
  grid-template-columns: auto minmax(0, 1fr);
@@ -22,8 +22,8 @@ export const SearchbarWrapper = styled.form`
 `;
 
 export const SearchButton = styled.div`
- height: 36px;
- width: 36px;
+ height: 32px;
+ width: 32px;
  display: flex;
  justify-content: center;
  align-items: center;
@@ -41,8 +41,9 @@ export const SearchInput = styled.input`
  border: none;
  transition: all 0.3s;
  width: 100%;
- height: 100%;
+ height: 32px;
  padding-right: 16px;
+ font-size: 15px;
 
  &:focus {
   outline: none;
@@ -50,6 +51,7 @@ export const SearchInput = styled.input`
 `;
 
 export const ResultList = styled.ul`
+ overflow-x: hidden;
  position: absolute;
  top: 50px;
  right: 0;
@@ -60,7 +62,7 @@ export const ResultList = styled.ul`
  max-width: 500px;
  border: 2px solid ${({ theme }) => theme.colors.tile.background};
  background-color: ${({ theme }) => theme.colors.site.background};
- border-radius: 0 0 8px 8px ;
+ border-radius: 0 0 8px 8px;
  border-top: none;
  gap: 8px;
  max-height: 80vh;
