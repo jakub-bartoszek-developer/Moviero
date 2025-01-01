@@ -1,12 +1,13 @@
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
+import { setCategory } from "../../utils/redux/searchSlice";
 import {
  fetchPerson,
  selectPerson,
  selectPersonMovies,
  selectStatus
 } from "../../utils/redux/personSlice";
-import { useEffect, useRef, useState } from "react";
 import {
  Banner,
  Biography,
@@ -22,9 +23,9 @@ import {
 } from "./styled";
 import { Loader } from "../../components/Loader/Loader";
 import avatar from "../../assets/images/no-avatar.png";
-import { setCategory } from "../../utils/redux/searchSlice";
 import { PersonMoviesSection } from "../../components/PersonMoviesSection/PersonMoviesSection";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { Error } from "../../components/Error/Error";
 
 const Person = () => {
  const dispatch = useDispatch();
@@ -60,63 +61,61 @@ const Person = () => {
   setIsExpanded((prev) => !prev);
  };
 
- console.log(isOverflow);
- console.log(isExpanded);
-
- switch (status) {
-  case "success":
-   return (
-    <Container>
-     <Banner>
-      <ImageWrapper>
-       <LazyLoadImage
-        alt={name}
-        src={
-         profile_path
-          ? `https://image.tmdb.org/t/p/original/${profile_path}`
-          : avatar
-        }
-        effect="blur"
-        width="100%"
-        height="100%"
-       />
-      </ImageWrapper>
-      <PersonDetails>
-       {name && <Name>{name}</Name>}
-       {birthday && <Birthdate>{birthday}</Birthdate>}
-       {place_of_birth && <Birthplace>{place_of_birth}</Birthplace>}
-      </PersonDetails>
-      {biography && (
-       <>
-        <BiographyWrapper
-         ref={biographyWrapperRef}
-         $isExpanded={isExpanded}
-        >
-         <BiographyHeader>Biography</BiographyHeader>
-         <Biography ref={biographyRef}>{biography}</Biography>
-        </BiographyWrapper>
-        {isOverflow && !isExpanded && (
-         <ShowMoreButton onClick={toggleBiography}>Read more</ShowMoreButton>
-        )}
-        {isExpanded && (
-         <ShowMoreButton
-          $isExpanded={isExpanded}
-          onClick={toggleBiography}
-         >
-          Collapse
-         </ShowMoreButton>
-        )}
-       </>
-      )}
-     </Banner>
-     <PersonMoviesSection movies={personMovies} />
-    </Container>
-   );
-  case "loading":
-   return <Loader />;
-  default:
-   return <>Error</>;
+ if (status === "loading") {
+  return <Loader />;
  }
+
+ if (status !== "success") {
+  return <Error />;
+ }
+
+ return (
+  <Container>
+   <Banner>
+    <ImageWrapper>
+     <LazyLoadImage
+      alt={name}
+      src={
+       profile_path
+        ? `https://image.tmdb.org/t/p/original/${profile_path}`
+        : avatar
+      }
+      effect="blur"
+      width="100%"
+      height="100%"
+     />
+    </ImageWrapper>
+    <PersonDetails>
+     {name && <Name>{name}</Name>}
+     {birthday && <Birthdate>{birthday}</Birthdate>}
+     {place_of_birth && <Birthplace>{place_of_birth}</Birthplace>}
+    </PersonDetails>
+    {biography && (
+     <>
+      <BiographyWrapper
+       ref={biographyWrapperRef}
+       $isExpanded={isExpanded}
+      >
+       <BiographyHeader>Biography</BiographyHeader>
+       <Biography ref={biographyRef}>{biography}</Biography>
+      </BiographyWrapper>
+      {isOverflow && !isExpanded && (
+       <ShowMoreButton onClick={toggleBiography}>Read more</ShowMoreButton>
+      )}
+      {isExpanded && (
+       <ShowMoreButton
+        $isExpanded={isExpanded}
+        onClick={toggleBiography}
+       >
+        Collapse
+       </ShowMoreButton>
+      )}
+     </>
+    )}
+   </Banner>
+   <PersonMoviesSection movies={personMovies} />
+  </Container>
+ );
 };
 
 export default Person;

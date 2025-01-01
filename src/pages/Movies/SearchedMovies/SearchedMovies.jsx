@@ -17,6 +17,7 @@ import { SearchResultsList, Container } from "./styled";
 import { VerticalSection } from "../../../components/VerticalSection/styled";
 import { SectionHeader } from "../../../components/SectionHeader/styled";
 import { MovieTile } from "../../../components/MovieTile/MovieTile";
+import { Error } from "../../../components/Error/Error";
 
 export const SearchedMovies = () => {
  const dispatch = useDispatch();
@@ -48,7 +49,7 @@ export const SearchedMovies = () => {
  }
 
  if (status !== "success") {
-  return <div>Error</div>;
+  return <Error />;
  }
 
  return (

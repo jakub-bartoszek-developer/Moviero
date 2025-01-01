@@ -12,6 +12,7 @@ import { Container } from "../../components/Container/styled";
 import { setCategory } from "../../utils/redux/searchSlice";
 import { Loader } from "../../components/Loader/Loader";
 import { Banner } from "../../components/Banner/Banner";
+import { Error } from "../../components/Error/Error";
 
 const Movie = () => {
  const { id } = useParams();
@@ -30,27 +31,28 @@ const Movie = () => {
   dispatch(fetchMovie({ movieId: id }));
  }, [dispatch, id]);
 
- switch (status) {
-  case "success":
-   return (
-    <>
-     <Banner
-      movie={movie}
-      movieGenres={movie.genres}
-     />
-     <Container>
-      <MovieTeamSection
-       cast={cast}
-       crew={crew}
-      />
-     </Container>
-    </>
-   );
-  case "loading":
-   return <Loader />;
-  default:
-   return <>Error</>;
+ if (status === "loading") {
+  return <Loader />;
  }
+
+ if (status !== "success") {
+  return <Error />;
+ }
+
+ return (
+  <>
+   <Banner
+    movie={movie}
+    movieGenres={movie.genres}
+   />
+   <Container>
+    <MovieTeamSection
+     cast={cast}
+     crew={crew}
+    />
+   </Container>
+  </>
+ );
 };
 
 export default Movie;

@@ -17,6 +17,7 @@ import { VerticalSection } from "../../../components/VerticalSection/styled";
 import { SectionHeader } from "../../../components/SectionHeader/styled";
 import { MovieTile } from "../../../components/MovieTile/MovieTile";
 import { Pagination } from "../../../components/Pagination/Pagination";
+import { Error } from "../../../components/Error/Error";
 
 export const PopularMovies = () => {
  const dispatch = useDispatch();
@@ -55,7 +56,7 @@ export const PopularMovies = () => {
  }
 
  if (status !== "success") {
-  return <div>Error</div>;
+  return <Error />;
  }
 
  return (
