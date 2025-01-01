@@ -6,6 +6,7 @@ export const SectionWrapper = styled.section`
 `;
 
 export const SectionHeader = styled.h2`
+ font-weight: 500;
  width: 100%;
  font-size: 32px;
  margin: 0;
