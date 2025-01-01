@@ -17,8 +17,9 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Poppins', sans-serif;
     color: ${({ theme }) => theme.colors.site.text};
     background-color: ${({ theme }) => theme.colors.site.background};
-    height: 100vh;
+    height: 100dvh;
     margin: 0;
+    overflow-y: scroll;
   }
 
   #root {

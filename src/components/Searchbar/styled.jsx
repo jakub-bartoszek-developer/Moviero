@@ -65,7 +65,7 @@ export const ResultList = styled.ul`
  border-radius: 0 0 8px 8px;
  border-top: none;
  gap: 8px;
- max-height: 80vh;
+ max-height: 80dvh;
  overflow-y: scroll;
  z-index: 3;
  transition: all 0.3s;
@@ -77,7 +77,7 @@ export const ResultList = styled.ul`
  @media (max-width: ${({ theme }) => theme.breakpoints.xs}) {
   width: 100vw;
   right: -16px;
-  max-height: 50vh;
+  max-height: 50dvh;
  }
 `;
 
