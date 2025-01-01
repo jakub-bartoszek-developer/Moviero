@@ -1,4 +1,3 @@
-import { nanoid } from "nanoid";
 import { toMovie } from "../../routes";
 import {
  MovieDetails,
@@ -11,30 +10,75 @@ import {
  Rate,
  Description,
  Votes,
- OutOf
+ OutOf,
+ StyledLink,
+ PlayIcon,
+ Tagline,
+ AdditionalDetails,
+ ReleaseDate,
+ Duration
 } from "./styled";
 
-export const Banner = ({ movie, movieGenres }) => {
+export const Banner = ({
+ movie: {
+  id,
+  backdrop_path,
+  title,
+  vote_average,
+  vote_count,
+  overview,
+  release_date,
+  runtime,
+  tagline
+ },
+ movieGenres,
+ isMoviePage
+}) => {
+ const hours = Math.floor(runtime / 60);
+ const minutes = runtime % 60;
+
  return (
   <BannerWrapper
-   key={movie.id}
-   $bgImage={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
+   key={id}
+   $bgImage={`https://image.tmdb.org/t/p/original/${backdrop_path}`}
   >
    <MovieDetails>
-    <Title to={toMovie({ id: movie.id })}>{movie.title}</Title>
+    <div>
+     <Title>{title}</Title>
+     {tagline && <Tagline>&#34;{tagline}&#34;</Tagline>}
+    </div>
+
     <Genres>
      {movieGenres.map((genre) => (
-      <Genre key={nanoid()}>{genre.name}</Genre>
+      <Genre key={genre.id || genre.name}>{genre.name}</Genre>
      ))}
     </Genres>
+
     <Rating>
      <StarIcon />
      <Rate>
-      {(movie?.vote_average ?? 0).toFixed(1)}/<OutOf>10</OutOf>
-      <Votes>&nbsp;{movie?.vote_count} votes</Votes>
+      {(vote_average ?? 0).toFixed(1)}/<OutOf>10</OutOf>
+      <Votes>&nbsp;{vote_count} votes</Votes>
      </Rate>
     </Rating>
-    <Description>{movie?.overview}</Description>
+
+    {isMoviePage && (
+     <AdditionalDetails>
+      <ReleaseDate>{new Date(release_date).toLocaleDateString()}</ReleaseDate>
+      <Duration>
+       {hours}h {minutes}m
+      </Duration>
+     </AdditionalDetails>
+    )}
+
+    {!isMoviePage && (
+     <StyledLink to={toMovie({ id: id })}>
+      <PlayIcon />
+      <span>Learn more</span>
+     </StyledLink>
+    )}
+
+    <Description>{overview || "No description available"}</Description>
    </MovieDetails>
   </BannerWrapper>
  );
