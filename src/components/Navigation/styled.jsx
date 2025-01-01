@@ -9,12 +9,12 @@ export const Wrapper = styled.nav`
  height: 50px;
  position: fixed;
  top: 0;
- z-index: 2;
+ z-index: 3;
  backdrop-filter: blur(2px);
  box-shadow: 0 0 15px 0 black;
 `;
 
-export const Container = styled.div`
+export const Content = styled.div`
  height: 100%;
  margin: 0 auto;
  max-width: 1400px;

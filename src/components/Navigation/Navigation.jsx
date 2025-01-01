@@ -1,39 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { Content, Links, MenuButton, StyledNavLink, Wrapper } from "./styled";
 import { Logo } from "../Logo/Logo";
 import { Searchbar } from "../Searchbar/Searchbar";
-import { Container, Links, MenuButton, StyledNavLink, Wrapper } from "./styled";
-import { Sidebar } from "../Sidebar/Sidebar";
 
-export const Navigation = () => {
- const [isShowed, setIsShowed] = useState(false);
-
- const onSidebarToggle = (e) => {
-  setIsShowed(!isShowed);
- };
-
- const handleOutsideClick = (e) => {
-  if (sidebarRef.current && !sidebarRef.current.contains(e.target)) {
-   setIsShowed(false);
-   e.stopPropagation();
-  }
- };
-
- useEffect(() => {
-  document.addEventListener("mousedown", handleOutsideClick);
-
-  return () => {
-   document.removeEventListener("mousedown", handleOutsideClick);
-  };
- }, []);
-
- const sidebarRef = useRef(null);
+export const Navigation = ({ onSidebarToggle }) => {
  return (
   <Wrapper>
-   <Sidebar
-    onSidebarToggle={onSidebarToggle}
-    isShowed={isShowed}
-   />
-   <Container>
+   <Content>
     <MenuButton onClick={onSidebarToggle} />
     <Logo />
     <Links>
@@ -41,7 +13,7 @@ export const Navigation = () => {
      <StyledNavLink to="/people?page=1">People</StyledNavLink>
     </Links>
     <Searchbar />
-   </Container>
+   </Content>
   </Wrapper>
  );
 };
