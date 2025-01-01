@@ -44,6 +44,7 @@ const Movie = () => {
    <Banner
     movie={movie}
     movieGenres={movie.genres}
+    isMoviePage={true}
    />
    <Container>
     <MovieTeamSection
