@@ -9,8 +9,6 @@ import {
 } from "./styled";
 
 export const Sidebar = ({ setIsSidebarOpen, onSidebarToggle, isOpen }) => {
- console.log(isOpen);
-
  return (
   <>
    <SidebarWrapper $isOpen={isOpen}>
