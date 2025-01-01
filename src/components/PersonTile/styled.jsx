@@ -53,11 +53,12 @@ export const Content = styled.div`
 `;
 
 export const Name = styled.p`
- font-weight: 800;
+ font-weight: 500;
 `;
 
 export const Role = styled.p`
  color: ${({ theme }) => theme.colors.site.mutedText};
+ font-size: 14px;
 `;
 
 export const Job = styled.p`
