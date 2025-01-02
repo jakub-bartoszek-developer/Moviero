@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const LoaderWrapper = styled.div`
  display: flex;
  height: 100%;
  align-items: center;
@@ -30,7 +30,7 @@ export const Item = styled.div`
  animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
 `;
 
-export const Wrapper = styled.div`
+export const ItemsWrapper = styled.div`
  display: inline-block;
  position: relative;
  width: 80px;

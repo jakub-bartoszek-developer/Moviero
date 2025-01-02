@@ -1,11 +1,10 @@
-import { Container, Item, Wrapper } from "./styled";
-
+import { LoaderWrapper, Item, ItemsWrapper } from "./styled";
 export const Loader = () => (
- <Container>
-  <Wrapper>
+ <LoaderWrapper>
+  <ItemsWrapper>
    <Item></Item>
    <Item></Item>
    <Item></Item>
-  </Wrapper>
- </Container>
+  </ItemsWrapper>
+ </LoaderWrapper>
 );
