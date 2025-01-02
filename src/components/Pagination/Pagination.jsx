@@ -1,19 +1,10 @@
 import { Container, PageCount, StyledButton } from "./styled";
 
-export const Pagination = ({
- searchParams,
- setSearchParams,
- containerRef,
- totalPages
-}) => {
+export const Pagination = ({ searchParams, setSearchParams, totalPages }) => {
  const page = parseInt(searchParams.get("page"));
 
  const handlePageClickScroll = () => {
-  if (containerRef.current) {
-   containerRef.current.scrollIntoView({
-    alignToTop: true
-   });
-  }
+  window.scrollTo(0, 0);
  };
 
  const onFirstPageHandler = () => {
