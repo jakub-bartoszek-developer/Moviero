@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { ReactComponent as Error } from "../../assets/icons/error.svg";
 
-export const Container = styled.div`
+export const ErrorWrapper = styled.div`
  height: 100%;
  width: 100%;
  display: flex;
