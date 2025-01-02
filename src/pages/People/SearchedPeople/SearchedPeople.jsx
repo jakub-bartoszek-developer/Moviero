@@ -1,29 +1,36 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
  fetchSearchResults,
  selectSearchResults,
  selectSearchStatus,
- selectTotalPages,
  selectTotalResults
 } from "../../../utils/redux/searchSlice";
-import { Container, PopularPeopleList } from "../styled";
 import { Loader } from "../../../components/Loader/Loader";
-import { Pagination } from "../../../components/Pagination/Pagination";
-import { PersonTile } from "../../../components/PersonTile/PersonTile";
-import { VerticalSection } from "../../../components/VerticalSection/styled";
-import { SectionHeader } from "../../../components/SectionHeader/styled";
 import { Error } from "../../../components/Error/Error";
+import { ItemListSection } from "../../../components/ItemListSection/ItemListSection";
+import { selectTotalPages } from "../../../utils/redux/searchSlice";
+import { Pagination } from "../../../components/Pagination/Pagination";
+import { SearchedPeopleWrapper } from "./styled";
 
 export const SearchedPeople = () => {
  const dispatch = useDispatch();
  const searchResults = useSelector(selectSearchResults);
  const status = useSelector(selectSearchStatus);
  const [searchParams, setSearchParams] = useSearchParams();
- const containerRef = useRef(null);
  const totalPages = useSelector(selectTotalPages);
  const totalResults = useSelector(selectTotalResults);
+
+ const currentPage = parseInt(searchParams.get("page") || "1", 10);
+ const searchQuery = searchParams.get("search") || "";
+ const header = () => {
+  if (searchResults.length > 0) {
+   return `Search results for "${searchQuery}" (${totalResults}) - Page ${currentPage} of ${totalPages}`;
+  } else {
+   return `No search results "${searchQuery}"`;
+  }
+ };
 
  useEffect(() => {
   searchParams.set("page", 1);
@@ -51,28 +58,18 @@ export const SearchedPeople = () => {
  }
 
  return (
-  <Container ref={containerRef}>
-   {searchResults.length && (
-    <VerticalSection>
-     <SectionHeader>
-      {`Search results for "${searchParams.get("search")}" (${totalResults})`}
-     </SectionHeader>
-     <PopularPeopleList>
-      {searchResults.map((person) => (
-       <PersonTile
-        key={person.id}
-        person={person}
-       />
-      ))}
-     </PopularPeopleList>
-    </VerticalSection>
-   )}
+  <SearchedPeopleWrapper>
+   <ItemListSection
+    header={header()}
+    items={searchResults}
+    category="people"
+    totalPages={totalPages}
+   />
    <Pagination
-    containerRef={containerRef}
     searchParams={searchParams}
     setSearchParams={setSearchParams}
     totalPages={totalPages}
    />
-  </Container>
+  </SearchedPeopleWrapper>
  );
 };

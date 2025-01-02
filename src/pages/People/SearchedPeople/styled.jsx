@@ -1,5 +1,5 @@
 import styled from "styled-components";
 
-export const SearchedMoviesWrapper = styled.div`
+export const SearchedPeopleWrapper = styled.div`
  margin-top: 50px;
 `;
