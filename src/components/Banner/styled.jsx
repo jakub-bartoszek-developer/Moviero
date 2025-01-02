@@ -45,7 +45,7 @@ export const MovieDetails = styled.div`
  height: 100%;
 `;
 
-export const Title = styled(Link)`
+export const Title = styled.h1`
  text-decoration: none;
  color: ${({ theme }) => theme.colors.site.text};
  font-weight: 500;
