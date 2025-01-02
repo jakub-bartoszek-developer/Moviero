@@ -1,4 +1,4 @@
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import { useEffect, useRef, useState } from "react";
 import {
  PersonBannerWrapper,
  Biography,
@@ -11,8 +11,8 @@ import {
  PersonDetails,
  ReadMoreButton
 } from "./styled";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import avatar from "../../assets/images/no-avatar.png";
-import { useEffect, useRef, useState } from "react";
 
 export const PersonBanner = ({
  person: { profile_path, name, birthday, place_of_birth, biography }
@@ -22,13 +22,23 @@ export const PersonBanner = ({
  const biographyRef = useRef(null);
  const [isOverflow, setIsOverflow] = useState(false);
 
- useEffect(() => {
+ const updateOverflow = () => {
   if (biographyWrapperRef.current && biographyRef.current) {
    const wrapperHeight = biographyWrapperRef.current.offsetHeight;
-   const contentHeight = biographyRef.current.scrollHeight;
+   const contentHeight = biographyRef.current.scrollHeight + 23;
+
    setIsOverflow(contentHeight > wrapperHeight);
   }
- }, [biography]);
+ };
+
+ useEffect(() => {
+  updateOverflow();
+  window.addEventListener("resize", updateOverflow);
+
+  return () => {
+   window.removeEventListener("resize", updateOverflow);
+  };
+ }, [biography, isExpanded]);
 
  const toggleBiography = () => {
   setIsExpanded((prev) => !prev);
