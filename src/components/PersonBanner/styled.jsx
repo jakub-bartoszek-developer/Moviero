@@ -5,7 +5,7 @@ export const PersonBannerWrapper = styled.div`
  margin: 0 auto;
  padding: 16px;
  display: grid;
- grid-template-columns: min-content auto;
+ grid-template-columns: min-content 1fr;
  grid-template-rows: min-content min-content 1fr;
 `;
 
