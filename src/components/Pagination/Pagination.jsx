@@ -1,4 +1,4 @@
-import { Container, PageCount, StyledButton } from "./styled";
+import { PageCount, PaginationWrapper, StyledButton } from "./styled";
 
 export const Pagination = ({ searchParams, setSearchParams, totalPages }) => {
  const page = parseInt(searchParams.get("page"));
@@ -32,7 +32,7 @@ export const Pagination = ({ searchParams, setSearchParams, totalPages }) => {
  };
 
  return (
-  <Container>
+  <PaginationWrapper>
    <StyledButton
     onClick={onFirstPageHandler}
     disabled={page === 1}
@@ -60,6 +60,6 @@ export const Pagination = ({ searchParams, setSearchParams, totalPages }) => {
    >
     &gt;&gt;
    </StyledButton>
-  </Container>
+  </PaginationWrapper>
  );
 };
