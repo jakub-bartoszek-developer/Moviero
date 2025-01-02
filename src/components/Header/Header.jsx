@@ -5,7 +5,7 @@ import {
  selectSimilarMovies
 } from "../../utils/redux/moviesSlice";
 import { Banner } from "../Banner/Banner";
-import { HorizontalSection } from "../HorizontalSection/HorizontalSection";
+import { SimilarMoviesSection } from "../SimilarMoviesSection/SimilarMoviesSection";
 
 export const Header = ({ currentMovie, setCurrentMovie, genres }) => {
  const dispatch = useDispatch();
@@ -46,7 +46,7 @@ export const Header = ({ currentMovie, setCurrentMovie, genres }) => {
      movieGenres={movieGenres}
     />
    )}
-   <HorizontalSection
+   <SimilarMoviesSection
     movies={similarMovies}
     currentMovie={currentMovie}
     handleMovieChange={handleMovieChange}
