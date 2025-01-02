@@ -1,6 +1,6 @@
-import { Logo } from "../Logo/Logo";
 import { MenuButton } from "../Navigation/styled";
 import {
+ Logo,
  SidebarBackground,
  SidebarContent,
  SidebarHeader,
@@ -14,7 +14,7 @@ export const Sidebar = ({ setIsSidebarOpen, onSidebarToggle, isOpen }) => {
    <SidebarWrapper $isOpen={isOpen}>
     <SidebarHeader>
      <MenuButton onClick={onSidebarToggle} />
-     <Logo />
+     <Logo to="/movies?page=1">Moviero</Logo>{" "}
     </SidebarHeader>
     <SidebarContent>
      <SidebarNavLink to="/movies?page=1">Movies</SidebarNavLink>

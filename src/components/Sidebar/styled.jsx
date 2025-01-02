@@ -64,3 +64,15 @@ export const SidebarBackground = styled.div`
  opacity: ${({ $isOpen }) => ($isOpen ? 1 : 0)};
  pointer-events: ${({ $isOpen }) => ($isOpen ? "auto" : "none")};
 `;
+
+export const Logo = styled(NavLink)`
+ width: min-content;
+ font-size: 32px;
+ font-weight: 700;
+ color: ${({ theme }) => theme.colors.site.text};
+ text-decoration: none;
+
+ @media (max-width: ${({ theme }) => theme.breakpoints.s}) {
+  font-size: 24px;
+ }
+`;

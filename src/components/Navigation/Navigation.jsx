@@ -1,5 +1,11 @@
-import { Content, Links, MenuButton, StyledNavLink, Wrapper } from "./styled";
-import { Logo } from "../Logo/Logo";
+import {
+ Content,
+ Links,
+ Logo,
+ MenuButton,
+ StyledNavLink,
+ Wrapper
+} from "./styled";
 import { Searchbar } from "../Searchbar/Searchbar";
 
 export const Navigation = ({ onSidebarToggle }) => {
@@ -7,7 +13,7 @@ export const Navigation = ({ onSidebarToggle }) => {
   <Wrapper>
    <Content>
     <MenuButton onClick={onSidebarToggle} />
-    <Logo />
+    <Logo to="/movies?page=1">Moviero</Logo>{" "}
     <Links>
      <StyledNavLink to="/movies?page=1">Movies</StyledNavLink>
      <StyledNavLink to="/people?page=1">People</StyledNavLink>

@@ -87,15 +87,18 @@ export const MenuButton = styled(Menu)`
  }
 `;
 
-export const MenuLogo = styled.div`
- display: flex;
- padding: 0;
- margin: 0;
- justify-content: start;
- align-items: center;
- font-size: 24px;
+export const Logo = styled(NavLink)`
+ width: min-content;
+ font-size: 32px;
  font-weight: 700;
  color: ${({ theme }) => theme.colors.site.text};
- text-shadow: 0 0 15px ${({ theme }) => theme.colors.site.text};
  text-decoration: none;
+
+ @media (max-width: ${({ theme }) => theme.breakpoints.s}) {
+  font-size: 24px;
+ }
+
+ @media (max-width: ${({ theme }) => theme.breakpoints.xs}) {
+  display: none;
+ }
 `;
