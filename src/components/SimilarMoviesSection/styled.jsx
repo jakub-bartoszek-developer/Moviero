@@ -1,13 +1,13 @@
 import styled, { css } from "styled-components";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
-export const HorizontalSectionWrapper = styled.section`
+export const SimilarMoviesSectionWrapper = styled.section`
  max-height: 300px;
  width: 100%;
  max-width: 1400px;
  display: grid;
  grid-template-rows: auto 1fr;
- margin: 0 auto;
+ margin: 0 auto 16px auto;
  padding: 0 16px;
 `;
 

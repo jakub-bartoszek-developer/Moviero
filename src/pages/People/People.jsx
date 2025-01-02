@@ -1,9 +1,8 @@
 import { useEffect } from "react";
-import { Container } from "../../components/Container/styled";
 import { useSearchParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { PopularPeople } from "./PopularPeople/PopularPeople";
 import { SearchedPeople } from "./SearchedPeople/SearchedPeople";
-import { useDispatch } from "react-redux";
 import { setCategory } from "../../utils/redux/searchSlice";
 
 const People = () => {
@@ -19,9 +18,7 @@ const People = () => {
  }, []);
 
  return (
-  <Container>
-   {searchParams.get("search") ? <SearchedPeople /> : <PopularPeople />}
-  </Container>
+  <>{searchParams.get("search") ? <SearchedPeople /> : <PopularPeople />}</>
  );
 };
 

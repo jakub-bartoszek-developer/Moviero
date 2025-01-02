@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import {
@@ -7,30 +7,30 @@ import {
  selectSearchStatus,
  selectTotalResults
 } from "../../../utils/redux/searchSlice";
-import {
- selectGenres,
- selectTotalPages
-} from "../../../utils/redux/moviesSlice";
-import { Pagination } from "../../../components/Pagination/Pagination";
+import { selectTotalPages } from "../../../utils/redux/searchSlice";
 import { Loader } from "../../../components/Loader/Loader";
-import { SearchResultsList, Container } from "./styled";
-import { VerticalSection } from "../../../components/VerticalSection/styled";
-import { SectionHeader } from "../../../components/SectionHeader/styled";
-import { MovieTile } from "../../../components/MovieTile/MovieTile";
 import { Error } from "../../../components/Error/Error";
+import { ItemListSection } from "../../../components/ItemListSection/ItemListSection";
+import { Pagination } from "../../../components/Pagination/Pagination";
+import { SearchedMoviesWrapper } from "./styled";
 
 export const SearchedMovies = () => {
  const dispatch = useDispatch();
  const status = useSelector(selectSearchStatus);
  const searchResults = useSelector(selectSearchResults);
- const genres = useSelector(selectGenres);
  const totalPages = useSelector(selectTotalPages);
  const totalResults = useSelector(selectTotalResults);
-
  const [searchParams, setSearchParams] = useSearchParams();
+
  const currentPage = parseInt(searchParams.get("page") || "1", 10);
  const searchQuery = searchParams.get("search") || "";
- const containerRef = useRef(null);
+ const header = () => {
+  if (searchResults.length > 0) {
+   return `Search results for "${searchQuery}" (${totalResults}) - Page ${currentPage} of ${totalPages}`;
+  } else {
+   return `No search results "${searchQuery}"`;
+  }
+ };
 
  useEffect(() => {
   if (searchQuery) {
@@ -53,37 +53,18 @@ export const SearchedMovies = () => {
  }
 
  return (
-  <Container ref={containerRef}>
-   {searchResults.length > 0 ? (
-    <>
-     <VerticalSection>
-      <SectionHeader>
-       {`Search results for "${searchQuery}" (${totalResults}) - Page ${currentPage} of ${totalPages}`}
-      </SectionHeader>
-      <SearchResultsList>
-       {searchResults.map((movie) => (
-        <MovieTile
-         genres={genres}
-         key={movie.id}
-         movie={movie}
-        />
-       ))}
-      </SearchResultsList>
-     </VerticalSection>
-     <Pagination
-      containerRef={containerRef}
-      searchParams={searchParams}
-      setSearchParams={setSearchParams}
-      totalPages={totalPages}
-     />
-    </>
-   ) : (
-    <VerticalSection>
-     <SectionHeader>
-      {`No search results found for "${searchQuery}".`}
-     </SectionHeader>
-    </VerticalSection>
-   )}
-  </Container>
+  <SearchedMoviesWrapper>
+   <ItemListSection
+    header={header()}
+    items={searchResults}
+    category="movies"
+    totalPages={totalPages}
+   />
+   <Pagination
+    searchParams={searchParams}
+    setSearchParams={setSearchParams}
+    totalPages={totalPages}
+   />
+  </SearchedMoviesWrapper>
  );
 };

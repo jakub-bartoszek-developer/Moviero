@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 export const BannerWrapper = styled.div`
  width: 100%;
  height: 100vw;
- max-height: 570px;
+ max-height: 612px;
  background-image: ${({ $bgImage }) => `url(${$bgImage})`};
  background-image: ${({ $bgImage, theme }) => `
   linear-gradient(to top, ${theme.colors.site.background}, rgba(0, 0, 0, 0)),
@@ -45,7 +45,7 @@ export const MovieDetails = styled.div`
  height: 100%;
 `;
 
-export const Title = styled(Link)`
+export const Title = styled.h1`
  text-decoration: none;
  color: ${({ theme }) => theme.colors.site.text};
  font-weight: 500;

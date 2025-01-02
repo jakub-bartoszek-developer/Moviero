@@ -65,7 +65,6 @@ App live here: [jakub-bartoszek.github.io/moviero](https://jakub-bartoszek.githu
 ### Other Utilities and Tools
 
 - Axios
-- nanoid
 
 ## Gallery
 

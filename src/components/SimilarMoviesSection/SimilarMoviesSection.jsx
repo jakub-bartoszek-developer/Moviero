@@ -5,17 +5,17 @@ import {
  MovieList,
  PosterWrapper,
  Poster,
- HorizontalSectionWrapper
+ SimilarMoviesSectionWrapper
 } from "./styled";
 import poster from "../../assets/images/no-poster.png";
 
-export const HorizontalSection = ({
+export const SimilarMoviesSection = ({
  movies,
  currentMovie,
  handleMovieChange
 }) => {
  return (
-  <HorizontalSectionWrapper>
+  <SimilarMoviesSectionWrapper>
    <SectionHeader>Similar movies</SectionHeader>
    {movies.length > 0 && (
     <MovieList>
@@ -41,6 +41,6 @@ export const HorizontalSection = ({
      ))}
     </MovieList>
    )}
-  </HorizontalSectionWrapper>
+  </SimilarMoviesSectionWrapper>
  );
 };

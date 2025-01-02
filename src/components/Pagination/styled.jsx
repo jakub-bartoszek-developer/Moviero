@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const PaginationWrapper = styled.div`
  width: 100%;
  display: flex;
  gap: 8px;
  justify-content: center;
  align-items: center;
- padding: 24px 0;
+ padding-bottom: 16px;
 `;
 
 export const StyledButton = styled.button`

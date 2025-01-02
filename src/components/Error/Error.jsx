@@ -1,10 +1,10 @@
-import { Container, ErrorIcon, ErrorMessage } from "./styled";
+import { ErrorWrapper, ErrorIcon, ErrorMessage } from "./styled";
 
 export const Error = () => {
  return (
-  <Container>
+  <ErrorWrapper>
    <ErrorIcon />
    <ErrorMessage>Something went wrong!</ErrorMessage>
-  </Container>
+  </ErrorWrapper>
  );
 };
