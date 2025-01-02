@@ -14,7 +14,6 @@ export const StyledButton = styled.button`
  padding: 0 24px;
  background-color: ${({ theme }) => theme.colors.tile.background};
  color: ${({ theme }) => theme.colors.site.text};
-
  border: none;
  border-radius: 10px;
  cursor: pointer;
@@ -37,8 +36,8 @@ export const StyledButton = styled.button`
  }
 
  @media (max-width: ${({ theme }) => theme.breakpoints.s}) {
-  height: 20px;
-  padding: 0 12px;
+  height: 28px;
+  padding: 0 15px;
  }
 `;
 
@@ -47,9 +46,5 @@ export const PageCount = styled.span`
 
  @media (max-width: ${({ theme }) => theme.breakpoints.m}) {
   font-size: 14px;
- }
-
- @media (max-width: ${({ theme }) => theme.breakpoints.s}) {
-  font-size: 10px;
  }
 `;

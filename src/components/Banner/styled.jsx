@@ -151,6 +151,11 @@ export const StyledLink = styled(Link)`
  align-items: center;
  cursor: pointer;
  transition: background-color 0.3s ease, transform 0.2s ease;
+
+ @media (max-width: ${({ theme }) => theme.breakpoints.s}) {
+  font-size: 12px;
+  padding: 6px 10px;
+ }
 `;
 
 export const PlayIcon = styled(Play)`
@@ -163,6 +168,14 @@ export const PlayIcon = styled(Play)`
   height: 16px;
   width: 16px;
   margin-right: 8px;
+ }
+
+ @media (max-width: ${({ theme }) => theme.breakpoints.s}) {
+  ${StyledLink}:hover & {
+   height: 12px;
+   width: 12px;
+   margin-right: 6px;
+  }
  }
 `;
 
@@ -178,10 +191,14 @@ export const Description = styled.p`
  text-shadow: 0 0 5px black, 0 0 5px black, 0 0 5px black, 0 0 5px black;
 
  @media (max-width: ${({ theme }) => theme.breakpoints.s}) {
-  font-size: 12px;
+  font-size: 14px;
   width: 100%;
   margin-top: auto;
   margin-bottom: 0;
+ }
+
+ @media (max-width: ${({ theme }) => theme.breakpoints.xs}) {
+  font-size: 12px;
  }
 `;
 
