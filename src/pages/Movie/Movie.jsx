@@ -46,12 +46,10 @@ const Movie = () => {
     movieGenres={movie.genres}
     isMoviePage={true}
    />
-   <Container>
-    <MovieTeamSection
-     cast={cast}
-     crew={crew}
-    />
-   </Container>
+   <MovieTeamSection
+    cast={cast}
+    crew={crew}
+   />
   </>
  );
 };
