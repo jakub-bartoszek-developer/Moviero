@@ -1,23 +1,23 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
-import {
- fetchSearchResults,
- selectSearchResults,
- selectSearchStatus,
- selectTotalResults
-} from "../../../utils/redux/searchSlice";
-import { selectTotalPages } from "../../../utils/redux/searchSlice";
 import { Loader } from "../../../components/Loader/Loader";
 import { Error } from "../../../components/Error/Error";
 import { ItemListSection } from "../../../components/ItemListSection/ItemListSection";
 import { Pagination } from "../../../components/Pagination/Pagination";
 import { SearchedMoviesWrapper } from "./styled";
+import {
+ fetchSearchedMovies,
+ selectMovies,
+ selectStatus,
+ selectTotalPages,
+ selectTotalResults
+} from "../../../utils/redux/moviesSlice";
 
 export const SearchedMovies = () => {
  const dispatch = useDispatch();
- const status = useSelector(selectSearchStatus);
- const searchResults = useSelector(selectSearchResults);
+ const status = useSelector(selectStatus);
+ const movies = useSelector(selectMovies);
  const totalPages = useSelector(selectTotalPages);
  const totalResults = useSelector(selectTotalResults);
  const [searchParams, setSearchParams] = useSearchParams();
@@ -25,7 +25,7 @@ export const SearchedMovies = () => {
  const currentPage = parseInt(searchParams.get("page") || "1", 10);
  const searchQuery = searchParams.get("search") || "";
  const header = () => {
-  if (searchResults.length > 0) {
+  if (movies.length > 0) {
    return `Search results for "${searchQuery}" (${totalResults}) - Page ${currentPage} of ${totalPages}`;
   } else {
    return `No search results "${searchQuery}"`;
@@ -35,7 +35,7 @@ export const SearchedMovies = () => {
  useEffect(() => {
   if (searchQuery) {
    dispatch(
-    fetchSearchResults({
+    fetchSearchedMovies({
      searchQuery,
      page: currentPage,
      category: "movie"
@@ -56,7 +56,7 @@ export const SearchedMovies = () => {
   <SearchedMoviesWrapper>
    <ItemListSection
     header={header()}
-    items={searchResults}
+    items={movies}
     category="movies"
     totalPages={totalPages}
    />

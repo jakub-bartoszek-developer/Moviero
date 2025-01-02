@@ -3,9 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const movieSlice = createSlice({
  name: "movie",
  initialState: {
+  status: "",
   movie: {},
-  movieCredits: {},
-  status: "loading"
+  movieCredits: {}
  },
  reducers: {
   fetchMovie: () => {},
@@ -21,7 +21,7 @@ const movieSlice = createSlice({
  }
 });
 
-export const { fetchMovie, setMovie, setStatus, setMovieCredits } =
+export const { fetchMovie, setMovie, setMovieCredits, setStatus } =
  movieSlice.actions;
 
 export const selectMovie = (state) => state.movie.movie;

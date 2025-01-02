@@ -3,9 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const personSlice = createSlice({
  name: "person",
  initialState: {
+  status: "",
   person: {},
-  personMovies: [],
-  status: "loading"
+  personMovies: []
  },
  reducers: {
   fetchPerson: () => {},
