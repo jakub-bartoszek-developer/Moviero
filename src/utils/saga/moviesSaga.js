@@ -1,25 +1,46 @@
 import { takeLatest, call, put, delay } from "@redux-saga/core/effects";
 import {
  fetchPopularMovies,
+ fetchSearchedMovies,
  fetchSimilarMovies,
  setGenres,
- setPopularMovies,
+ setMovies,
  setSimilarMovies,
  setStatus,
- setTotalPages
+ setTotalPages,
+ setTotalResults
 } from "../redux/moviesSlice";
 import { fetchAPI } from "../fetchAPI";
 
 function* fetchPopularMoviesHandler({ payload }) {
  try {
   yield put(setStatus("loading"));
-  const popularMovies = yield call(
+  const movies = yield call(
    fetchAPI,
    `movie/popular?page=${payload.page}`
   );
   const genres = yield call(fetchAPI, `genre/movie/list?language=en`);
-  yield put(setPopularMovies(popularMovies.results));
-  yield put(setTotalPages(popularMovies.total_pages));
+  yield put(setMovies(movies.results));
+  yield put(setTotalPages(movies.total_pages));
+  yield put(setGenres(genres.genres));
+  yield put(setStatus("success"));
+
+ } catch (error) {
+  yield put(setStatus("error"));
+ }
+}
+
+function* fetchSearchedMoviesHandler({ payload }) {
+ try {
+  yield put(setStatus("loading"));
+  const movies = yield call(
+   fetchAPI,
+   `search/${payload.category}?query=${payload.searchQuery}&page=${payload.page}`
+  );
+  const genres = yield call(fetchAPI, `genre/movie/list?language=en`);
+  yield put(setMovies(movies.results));
+  yield put(setTotalPages(movies.total_pages));
+  yield put(setTotalResults(movies.total_results));
   yield put(setGenres(genres.genres));
   yield put(setStatus("success"));
 
@@ -43,6 +64,7 @@ function* fetchSimilarMoviesHandler({ payload }) {
 }
 
 export function* moviesSaga() {
+ yield takeLatest(fetchSearchedMovies.type, fetchSearchedMoviesHandler);
  yield takeLatest(fetchPopularMovies.type, fetchPopularMoviesHandler);
  yield takeLatest(fetchSimilarMovies.type, fetchSimilarMoviesHandler);
 }

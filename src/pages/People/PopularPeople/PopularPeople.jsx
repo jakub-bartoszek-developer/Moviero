@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
  fetchPopularPeople,
- selectPopularPeople,
+ selectPeople,
  selectStatus,
  selectTotalPages
 } from "../../../utils/redux/peopleSlice";
@@ -15,7 +15,7 @@ import { PeopleWrapper } from "./styled";
 
 export const PopularPeople = () => {
  const dispatch = useDispatch();
- const popularPeople = useSelector(selectPopularPeople);
+ const people = useSelector(selectPeople);
  const status = useSelector(selectStatus);
  const [searchParams, setSearchParams] = useSearchParams();
  const totalPages = useSelector(selectTotalPages);
@@ -43,7 +43,7 @@ export const PopularPeople = () => {
   <PeopleWrapper>
    <ItemListSection
     header="Popular people"
-    items={popularPeople}
+    items={people}
     category="people"
     totalPages={totalPages}
    />

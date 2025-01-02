@@ -1,31 +1,33 @@
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
- fetchSearchResults,
- selectSearchResults,
- selectSearchStatus,
- selectTotalResults
-} from "../../../utils/redux/searchSlice";
 import { Loader } from "../../../components/Loader/Loader";
 import { Error } from "../../../components/Error/Error";
 import { ItemListSection } from "../../../components/ItemListSection/ItemListSection";
-import { selectTotalPages } from "../../../utils/redux/searchSlice";
 import { Pagination } from "../../../components/Pagination/Pagination";
 import { SearchedPeopleWrapper } from "./styled";
+import {
+ fetchSearchedPeople,
+ selectPeople,
+ selectStatus,
+ selectTotalPages,
+ selectTotalResults
+} from "../../../utils/redux/peopleSlice";
 
 export const SearchedPeople = () => {
  const dispatch = useDispatch();
- const searchResults = useSelector(selectSearchResults);
- const status = useSelector(selectSearchStatus);
+ const people = useSelector(selectPeople);
+ const status = useSelector(selectStatus);
  const [searchParams, setSearchParams] = useSearchParams();
  const totalPages = useSelector(selectTotalPages);
  const totalResults = useSelector(selectTotalResults);
 
+ console.log(totalResults)
+
  const currentPage = parseInt(searchParams.get("page") || "1", 10);
  const searchQuery = searchParams.get("search") || "";
  const header = () => {
-  if (searchResults.length > 0) {
+  if (people.length > 0) {
    return `Search results for "${searchQuery}" (${totalResults}) - Page ${currentPage} of ${totalPages}`;
   } else {
    return `No search results "${searchQuery}"`;
@@ -40,7 +42,7 @@ export const SearchedPeople = () => {
  useEffect(() => {
   if (searchParams.get("page")) {
    dispatch(
-    fetchSearchResults({
+    fetchSearchedPeople({
      searchQuery: searchParams.get("search"),
      page: searchParams.get("page"),
      category: "person"
@@ -61,7 +63,7 @@ export const SearchedPeople = () => {
   <SearchedPeopleWrapper>
    <ItemListSection
     header={header()}
-    items={searchResults}
+    items={people}
     category="people"
     totalPages={totalPages}
    />

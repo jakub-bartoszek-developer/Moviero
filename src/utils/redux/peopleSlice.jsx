@@ -3,22 +3,24 @@ import { createSlice } from "@reduxjs/toolkit";
 const peopleSlice = createSlice({
  name: "people",
  initialState: {
-  status: "loading",
-  popularPeople: [],
-  searchResults: [],
-  totalPages: 1
+  status: "",
+  people: [],
+  totalPages: 1,
+  totalResults: 20
  },
  reducers: {
   fetchPopularPeople: () => {},
-  fetchSearchResults: () => {},
+  fetchSearchedPeople: () => {},
   setStatus: (state, { payload }) => {
    state.status = payload;
   },
-  setSearchResults: (state, { payload }) => {
-   state.searchResults = payload;
-  },
-  setPopularPeople: (state, { payload }) => {
+  setPeople: (state, { payload }) => {
    state.popularPeople = payload;
+  },
+  setTotalResults: (state, { payload }) => {
+   state.totalResults = payload;
+   console.log(state.totalResults)
+
   },
   setTotalPages: (state, { payload }) => {
    if (payload > 500) {
@@ -32,16 +34,16 @@ const peopleSlice = createSlice({
 
 export const {
  fetchPopularPeople,
- fetchSearchResults,
- setSearchResults,
- setPopularPeople,
+ fetchSearchedPeople,
+ setPeople,
  setTotalPages,
- setStatus
+ setStatus,
+ setTotalResults
 } = peopleSlice.actions;
 
-export const selectPopularPeople = (state) => state.people.popularPeople;
+export const selectPeople = (state) => state.people.popularPeople;
 export const selectTotalPages = (state) => state.people.totalPages;
 export const selectStatus = (state) => state.people.status;
-export const selectSearchResults = (state) => state.people.searchResults;
+export const selectTotalResults = (state) => state.people.totalResults;
 
 export default peopleSlice.reducer;

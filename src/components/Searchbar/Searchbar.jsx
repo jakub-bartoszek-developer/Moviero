@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
- fetchSearchbarResults,
+ fetchSearchResults,
  selectSearchQuery,
- selectSearchbarResults,
+ selectSearchResults,
  setSearchQuery,
  selectCategory,
- selectSearchbarStatus
+ selectSearchStatus
 } from "../../utils/redux/searchSlice";
 import {
  ResultList,
@@ -55,8 +55,8 @@ const SearchResults = React.memo(({ results, status, switchSearchbar }) => {
 
 export const Searchbar = () => {
  const searchQuery = useSelector(selectSearchQuery);
- const searchbarResults = useSelector(selectSearchbarResults);
- const status = useSelector(selectSearchbarStatus);
+ const searchbarResults = useSelector(selectSearchResults);
+ const status = useSelector(selectSearchStatus);
  const category = useSelector(selectCategory);
 
  const [isExpanded, setIsExpanded] = useState(false);
@@ -86,7 +86,7 @@ export const Searchbar = () => {
  useEffect(() => {
   if (searchQuery !== "") {
    dispatch(
-    fetchSearchbarResults({
+    fetchSearchResults({
      searchQuery: searchQuery,
      page: 1,
      category: category

@@ -4,7 +4,7 @@ import { useSearchParams } from "react-router-dom";
 import {
  fetchPopularMovies,
  selectGenres,
- selectPopularMovies,
+ selectMovies,
  selectRandomPopularMovie,
  selectStatus,
  selectTotalPages,
@@ -20,7 +20,7 @@ import { PopularMoviesWrapper } from "./styled";
 export const PopularMovies = () => {
  const dispatch = useDispatch();
  const status = useSelector(selectStatus);
- const popularMovies = useSelector(selectPopularMovies);
+ const movies = useSelector(selectMovies);
  const randomPopularMovie = useSelector(selectRandomPopularMovie);
  const genres = useSelector(selectGenres);
  const totalPages = useSelector(selectTotalPages);
@@ -36,12 +36,10 @@ export const PopularMovies = () => {
  }, [searchParams, dispatch]);
 
  useEffect(() => {
-  if (popularMovies.length > 0) {
-   dispatch(
-    setRandomPopularMovie(popularMovies[Math.floor(Math.random() * 19)])
-   );
+  if (movies.length > 0) {
+   dispatch(setRandomPopularMovie(movies[Math.floor(Math.random() * 19)]));
   }
- }, [dispatch, popularMovies]);
+ }, [dispatch, movies]);
 
  useEffect(() => {
   if (Object.keys(randomPopularMovie).length > 0) {
@@ -68,7 +66,7 @@ export const PopularMovies = () => {
    )}
    <ItemListSection
     header="Popular movies"
-    items={popularMovies}
+    items={movies}
     category="movies"
     totalPages={totalPages}
    />
