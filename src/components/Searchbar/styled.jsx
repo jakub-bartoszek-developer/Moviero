@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { ReactComponent as SearchIconSvg } from "../../assets/icons/search.svg";
 
-export const Container = styled.div`
+export const SearchbarOuterWrapper = styled.div`
  width: 100%;
  height: 100%;
  display: flex;

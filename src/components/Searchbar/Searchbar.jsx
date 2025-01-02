@@ -9,9 +9,9 @@ import {
  selectSearchbarStatus
 } from "../../utils/redux/searchSlice";
 import {
- Container,
  ResultList,
  ResultStatus,
+ SearchbarOuterWrapper,
  SearchbarWrapper,
  SearchButton,
  SearchIcon,
@@ -114,7 +114,7 @@ export const Searchbar = () => {
  );
 
  return (
-  <Container>
+  <SearchbarOuterWrapper>
    <SearchbarWrapper
     onSubmit={onFormSubmit}
     ref={wrapperRef}
@@ -143,6 +143,6 @@ export const Searchbar = () => {
      </ResultList>
     )}
    </SearchbarWrapper>
-  </Container>
+  </SearchbarOuterWrapper>
  );
 };
