@@ -35,16 +35,18 @@ export const SidebarContent = styled.div`
 `;
 
 export const SidebarNavLink = styled(NavLink)`
- padding: 8px;
+ padding: 8px 16px;
  text-decoration: none;
- color: ${({ theme }) => theme.colors.site.text};
+ color: ${({ theme }) => theme.colors.site.mutedText};
  transition: text-shadow 300ms ease-in-out;
 
  &.active {
+  color: ${({ theme }) => theme.colors.site.text};
   text-shadow: 0 0 15px ${({ theme }) => theme.colors.site.text};
  }
 
  &:hover {
+  color: ${({ theme }) => theme.colors.site.text};
   text-shadow: 0 0 15px ${({ theme }) => theme.colors.site.text};
  }
 `;
