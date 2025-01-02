@@ -58,7 +58,7 @@ export const SidebarBackground = styled.div`
  background-color: rgba(0, 0, 0, 0.5);
  backdrop-filter: blur(2px);
  transition: opacity 300ms ease-in-out;
- z-index: 2;
+ z-index: 3;
  opacity: ${({ $isOpen }) => ($isOpen ? 1 : 0)};
  pointer-events: ${({ $isOpen }) => ($isOpen ? "auto" : "none")};
 `;
