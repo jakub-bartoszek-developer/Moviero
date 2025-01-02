@@ -1,7 +1,12 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { selectGenres } from "../../utils/redux/moviesSlice";
-import { Container, MovieList, PeopleList, ShowMoreButton } from "./styled";
+import {
+ ItemListSectionWrapper,
+ MovieList,
+ PeopleList,
+ ShowMoreButton
+} from "./styled";
 import { SectionHeader } from "../SectionHeader/styled";
 import { MovieTile } from "../MovieTile/MovieTile";
 import { PersonTile } from "../PersonTile/PersonTile";
@@ -23,7 +28,7 @@ export const ItemListSection = ({
   : items;
 
  return (
-  <Container>
+  <ItemListSectionWrapper>
    <SectionHeader>{header}</SectionHeader>
    {category === "movies" ? (
     <MovieList>
@@ -52,6 +57,6 @@ export const ItemListSection = ({
       {showAll ? "Show Less" : "Show More"}
      </ShowMoreButton>
     )}
-  </Container>
+  </ItemListSectionWrapper>
  );
 };
