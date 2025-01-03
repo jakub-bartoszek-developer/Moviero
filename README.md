@@ -70,19 +70,23 @@ App live here: [jakub-bartoszek.github.io/moviero](https://jakub-bartoszek.githu
 
 - Home page (Popular movies, one random popular movie with similar movies suggestions)
 
-  ![image](https://github.com/jakub-bartoszek/moviero/assets/113419864/98c2d404-8a00-4a2d-bb45-ebebad091500)
+  ![image](/public/images/homepage.png)
 
 - Small quick searchbar
 
-  ![image](https://github.com/jakub-bartoszek/moviero/assets/113419864/9c22d96b-a1cc-47f0-a4ca-2291ebfa21bf)
+  ![image](/public/images/searchbar.png)
 
 - Search results page
 
-  ![image](https://github.com/jakub-bartoszek/moviero/assets/113419864/e3260e54-3bb3-4d55-a46f-9ec0f92001ad)
+  ![image](/public/images/searchresults.png)
 
 - Movie page
 
-  ![image](https://github.com/jakub-bartoszek/moviero/assets/113419864/bbb5f24e-44a9-4cd2-b2e1-0eed6907d842)
+  ![image](/public/images/moviepage.png)
+
+- Person page
+
+  ![image](/public/images/personpage.png)
 
 ## Contact
 
